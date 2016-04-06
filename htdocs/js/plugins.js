@@ -1,24 +1,41 @@
 // Avoid `console` errors in browsers that lack a console.
 (function() {
-    var method;
-    var noop = function () {};
-    var methods = [
-        'assert', 'clear', 'count', 'debug', 'dir', 'dirxml', 'error',
-        'exception', 'group', 'groupCollapsed', 'groupEnd', 'info', 'log',
-        'markTimeline', 'profile', 'profileEnd', 'table', 'time', 'timeEnd',
-        'timeline', 'timelineEnd', 'timeStamp', 'trace', 'warn'
-    ];
-    var length = methods.length;
-    var console = (window.console = window.console || {});
-
-    while (length--) {
-        method = methods[length];
-
-        // Only stub undefined methods.
-        if (!console[method]) {
-            console[method] = noop;
-        }
-    }
+	var positionTopScroll=0;
+	$(window).scroll(function(event) {
+		// Get the value of the scroll position
+		positionTopScroll = $(window).scrollTop();
+		resizeTopBar();
+	})
+	
+	var hiddenTopBar = false;
+	function resizeTopBar() {
+		if(positionTopScroll>50 && !hiddenTopBar) {
+			hiddenTopBar=true;
+			$("#topbar").animate({"top":"-"+$("#firstTopBar").height()+"px"},200);
+		} else if(positionTopScroll<50 && hiddenTopBar) {
+			hiddenTopBar=false;
+			$("#topbar").animate({"top":"0px"},200);
+		}
+	}
+	
+	function adaptContent() {
+		$(".imgHolder").each(function( index ) {
+			$(this).css("height",$( window ).height()+"px");
+		});
+	}
+	
+	$( window ).resize(function() {
+		adaptContent();
+	})
+	
+	$( window ).load(function() {
+		$(".imgHolder").each(function( index ) {
+			$(this).css("height",$( window ).height()+"px");
+		});
+		var cal = $(".imgHolder").width() / 2400;
+		alert($(window).width());
+		$(".imgContainer").css("transform","translate3d(0px, 0px, 0px) scale("+cal+","+cal+")");
+	});
 }());
 
 // Place any jQuery/helper plugins in here.

@@ -12,7 +12,7 @@ html {
     background: #000000;
     color: #FFFFFF;
     text-align: center;
-    
+    overflow-x: hidden;
 }
 
 body {
@@ -22,24 +22,79 @@ body {
 #warp {
 	background: #000000 url("../img/black.jpg") center top;
 	width:100%;
-	height:100%;
+	height:200%;
 }
 
-#logo {
-	height:70%;
-	justify-content: center;
-	display: flex;
-  	align-items: center
+#content {
+	height: 100%;
 }
 
-#msg {
-	height:30%;
-	justify-content: center;
-	display: flex;
-  	align-items: center
+#topbar {
+	position: fixed;
+	width: 100%;
+	z-index: 1000;
 }
 
-#msg-text {
-	font-size: 6vw;
+#firstTopBar {
+	background: #FF0000;
+	height: 70px;
 }
+
+#secondTopBar {
+	background: #00FF00;
+	height: 40px;
+}
+
+#marginLeft {
+	position: fixed;
+	height: 100%;
+	width: 20px;
+	top: 0;
+	background-color: #FFFFFF;
+	z-index: 100;
+}
+
+#marginRight {
+	position: fixed;
+	height: 100%;
+	width: 20px;
+	top: 0;
+	right: 0;
+	background-color: #FFFFFF;
+	z-index: 100;
+}
+
+#slide1, #slide2, #slide3 {
+	height: 100%;
+	padding-top:100px;
+}
+
+
+.imgContainer {
+	position: absolute; 
+	left:0;
+	top:0;
+	margin: auto;
+	height: 100%;
+	width: 100%;
+	overflow:hidden;
+}
+
+.imgHolder {
+	width: 100%;
+	overflow: hidden;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
 
