@@ -5,12 +5,42 @@
 	$(window).scroll(function(event) {
 		// Get the value of the scroll position
 		positionTopScroll = $(window).scrollTop();
-		resizeTopBar();
 		$("#firstSlide").css("top",-10*$(window).scrollTop()+"px");
+		secondSlide();
 	})
+	
+	/**
+	 * Specialement pour l'animation sur le petit menu
+	 */
+	var lastScrollTop = 0;
+	$(window).scroll(function(event){
+		var st = $(this).scrollTop();
+		if (st > lastScrollTop){
+			if (!$("#topbar").is(':animated')) {
+				$("#topbar").clearQueue();
+				$("#topbar").stop();
+				$("#topbar").animate({"top":"-"+$("#firstTopBar").height()+"px"},200);
+			}
+		} else {
+			if (!$("#topbar").is(':animated')) {
+				$("#topbar").clearQueue();
+				$("#topbar").stop();
+				$("#topbar").animate({"top":"0px"},200);
+			}
+		}
+		lastScrollTop = st;
+	});
+		
+		
+	function secondSlide() {
+		if(positionTopScroll>100) {
+			console.log("yes");
+		}
+	}
 	
 	var scrollUp = false;
 	function resizeTopBar() {
+		/**
 		if(oldPositionTopScroll-5>positionTopScroll && scrollUp) {
 			scrollUp=!scrollUp;
 			$("#topbar").clearQueue();
@@ -23,6 +53,7 @@
 			$("#topbar").animate({"top":"-"+$("#firstTopBar").height()+"px"},200);
 		}
 		oldPositionTopScroll = positionTopScroll;
+		**/
 	}
 	
 	function adaptContent() {
@@ -33,12 +64,12 @@
 		var imgH = $(".imgHolder").height();
 		var winW = $(window).width();
 		var winH = $(window).height();
-		var calW = $(".imgHolder").width() / 2400;
-		var calH = $(".imgHolder").height() / 1600;
-		$(".imgContainer").css("transform","translate3d(0px, 0px, 0px) scale("+calW+","+calW+")");
+		var calW = $(".imgHolder").width() / 1440;
+		var calH = $(".imgHolder").height() / 960;
+		$(".imgContainer").css("transform","translate3d(0px, -100px, 0px) scale("+calW+","+calW+")");
 		if($(".imgContainer")[0].getBoundingClientRect().height<winH) {
-			var offsetX = ((calH*2400) - winW)/2;
-			$(".imgContainer").css("transform","translate3d(-"+offsetX+"px, 0px, 0px) scale("+calH+","+calH+")");
+			var offsetX = ((calH*1440) - winW)/2;
+			$(".imgContainer").css("transform","translate3d(-"+offsetX+"px, -100px, 0px) scale("+calH+","+calH+")");
 		}
 		
 	}
