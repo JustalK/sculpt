@@ -72,15 +72,14 @@ body {
 
 .imgContainer {
 	position: absolute; 
-	left:0;
-	top:0;
-	margin: auto;
-	height: 100%;
-	width: 100%;
+	width: 2400px;
+	height: 1600px;
 	overflow:hidden;
+	transform-origin: top left;
 }
 
 .imgHolder {
+	position:relative;
 	width: 100%;
 	overflow: hidden;
 }

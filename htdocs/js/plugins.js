@@ -33,8 +33,7 @@
 			$(this).css("height",$( window ).height()+"px");
 		});
 		var cal = $(".imgHolder").width() / 2400;
-		alert($(window).width());
-		$(".imgContainer").css("transform","translate3d(0px, 0px, 0px) scale("+cal+","+cal+")");
+		$(".imgContainer").css("transform","translate3d(0px, 0px, 0px) scale(0.8,0.8)");
 	});
 }());
 
