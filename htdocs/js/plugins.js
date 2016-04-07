@@ -22,19 +22,24 @@
 		$(".imgHolder").each(function( index ) {
 			$(this).css("height",$( window ).height()+"px");
 		});
+		var imgW = $(".imgHolder").width();
+		var imgH = $(".imgHolder").height();
+		var winW = $(window).width();
+		var winH = $(window).height();
+		var calW = $(".imgHolder").width() / 2400;
+		var calH = $(".imgHolder").height() / 1600;
+		$(".imgContainer").css("transform","translate3d(0px, 0px, 0px) scale("+calW+","+calW+")");
+		console.log(+" "+imgH);
+		if($(".imgContainer")[0].getBoundingClientRect().height<winH) {
+			$(".imgContainer").css("transform","translate3d(0px, 0px, 0px) scale("+calH+","+calH+")");
+		}
 	}
 	
-	$( window ).resize(function() {
+	/**
+	 * Adapte le contenu lors du chargement de la page et lorsque l'on modifie la taille de la fenetre
+	 */
+	$( window ).on("resize load",function() {
 		adaptContent();
-	})
-	
-	$( window ).load(function() {
-		$(".imgHolder").each(function( index ) {
-			$(this).css("height",$( window ).height()+"px");
-		});
-		var cal = $(".imgHolder").width() / 2400;
-		$(".imgContainer").css("transform","translate3d(0px, 0px, 0px) scale(0.8,0.8)");
 	});
+	
 }());
-
-// Place any jQuery/helper plugins in here.
