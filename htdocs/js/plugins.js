@@ -29,9 +29,10 @@
 		var calW = $(".imgHolder").width() / 2400;
 		var calH = $(".imgHolder").height() / 1600;
 		$(".imgContainer").css("transform","translate3d(0px, 0px, 0px) scale("+calW+","+calW+")");
-		console.log(+" "+imgH);
 		if($(".imgContainer")[0].getBoundingClientRect().height<winH) {
-			$(".imgContainer").css("transform","translate3d(0px, 0px, 0px) scale("+calH+","+calH+")");
+			//console.log(winW+" "+(calH*2400));
+			var offsetX = ((calH*2400) - winW)/2;
+			$(".imgContainer").css("transform","translate3d(-"+offsetX+"px, 0px, 0px) scale("+calH+","+calH+")");
 		}
 	}
 	
