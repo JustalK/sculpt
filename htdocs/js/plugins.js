@@ -7,6 +7,7 @@
 		positionTopScroll = $(window).scrollTop();
 		slide1();
 		slide2();
+		slide3();
 	});
 	
 	/**
@@ -30,13 +31,11 @@
 	 * =======================================================================================>
 	 */	
 	
-	var resW = 0;
-	var resH = 0;
-	var offset = 300;
 	var VITESSE_SLIDE_2 = 3;
 	var PUISSANCE_OPACITY_SLIDE_2 = 0.5;
 	var VITESSE_OPACITY_SLIDE_2 = 0.02;
 	var OFFSET_SLIDE_2 = 300;
+	var OFFSET_TRANSITION_SLIDE_2 = 50;
 	function slide2() {
 		if(positionTopScroll>endPositionSlide1) {
 			// Gere l'ensemble du premier rayon d'opacite...
@@ -53,14 +52,38 @@
 			// Reset l'opacite en dehors du slide
 			$("#backgroundSlideText1").css("opacity",0);
 		}
+	}
+	
+	var endPositionSlide2;
+	function endSlide2() {
+		endPositionSlide2 = endPositionSlide1+OFFSET_SLIDE_2+$(window).height()/4;
+	}
+
+	/**
+	 * =======================================================================================>
+	 * SLIDE 3
+	 * =======================================================================================>
+	 */		
+	
+
+	function slide3() {
+		/**
 		if(positionTopScroll>480) {
 			zoom+=0.01;
 			var calW = $(".imgHolder").width() / 1440;
 			//$(".imgContainer").css("transform","translate3d("+offset+"px, 0px, 0px) scale("+(calW+zoom)+","+(calW+zoom)+")");
 		}
-		console.log("");
+		**/
+		if(positionTopScroll>endPositionSlide2) {
+			var calX = 1800+offset;
+			var calY = -800;
+			$(".imgContainer").css("transform","translate3d(-"+calX+"px, "+calY+"px, 0px) scale(0.5,0.5)");
+			//$(".imgContainer").css("transform","translate3d(-"+calX+"px, "+calY+"px, 0px) scale("+(ratio)+","+(ratio)+")");
+			console.log("here");
+		}
 	}
-	var zoom=0;
+	
+	
 	/**
 	 * Specialement pour l'animation sur le petit menu
 	 */
@@ -83,6 +106,8 @@
 		lastScrollTop = st;
 	});
 	
+	var ratio = 0;
+	var offset = 300;
 	function adaptContent() {
 		$(".imgHolder").each(function( index ) {
 			$(this).css("height",$( window ).height()+"px");
@@ -94,13 +119,11 @@
 		var calW = $(".imgHolder").width() / 6000;
 		var calH = $(".imgHolder").height() / 4000;
 		$(".imgContainer").css("transform","translate3d(0px, 0px, 0px) scale("+calW+","+calW+")");
-		resW = calW;
-		resH = calW;
+		ratio = calW;
 		offset = 0;
 		if($(".imgContainer")[0].getBoundingClientRect().height<winH || $(".imgHolder")[0].getBoundingClientRect().height<$(".imgContainer")[0].getBoundingClientRect().height) {
 			var offsetX = ((calH*6000) - winW)/2;
-			resW = calH;
-			resH = calH;
+			ratio = calH;
 			offset = offsetX;
 			$(".imgContainer").css("transform","translate3d(-"+offsetX+"px, 0px, 0px) scale("+calH+","+calH+")");
 		}
@@ -113,5 +136,6 @@
 	$( window ).on("resize load",function() {
 		adaptContent();
 		endSlide1();
+		endSlide2();
 	});
 }());
