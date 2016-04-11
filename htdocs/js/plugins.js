@@ -75,9 +75,12 @@
 		}
 		**/
 		if(positionTopScroll>endPositionSlide2) {
-			var calX = 1800+offset;
-			var calY = -800;
-			$(".imgContainer").css("transform","translate3d(-"+calX+"px, "+calY+"px, 0px) scale(0.5,0.5)");
+			var calX = 1000+offset;
+			var calY = 0;
+			console.log(ratio);
+			positionX=-600;
+			adaptContent();
+			//$(".imgContainer").css("transform","translate3d(-"+calX+"px, "+calY+"px, 0px) scale("+2*ratio+","+2*ratio+")");
 			//$(".imgContainer").css("transform","translate3d(-"+calX+"px, "+calY+"px, 0px) scale("+(ratio)+","+(ratio)+")");
 			console.log("here");
 		}
@@ -108,6 +111,7 @@
 	
 	var ratio = 0;
 	var offset = 300;
+	var positionX = 0,positionY = -200;
 	function adaptContent() {
 		$(".imgHolder").each(function( index ) {
 			$(this).css("height",$( window ).height()+"px");
@@ -116,15 +120,15 @@
 		var imgH = $(".imgHolder").height();
 		var winW = $(window).width();
 		var winH = $(window).height();
-		var calW = $(".imgHolder").width() / 6000;
-		var calH = $(".imgHolder").height() / 4000;
-		$(".imgContainer").css("transform","translate3d(0px, 0px, 0px) scale("+calW+","+calW+")");
+		var calW = ($(".imgHolder").width() - positionX) / 6000;
+		var calH = ($(".imgHolder").height() - positionY) / 4000;
+		
+		$(".imgContainer").css("transform","translate3d("+positionX+"px, "+positionY+"px, 0px) scale("+calW+","+calW+")");
 		ratio = calW;
 		offset = 0;
 		if($(".imgContainer")[0].getBoundingClientRect().height<winH || $(".imgHolder")[0].getBoundingClientRect().height<$(".imgContainer")[0].getBoundingClientRect().height) {
-			var offsetX = ((calH*6000) - winW)/2;
+			var offsetX = positionX + ((calH*6000) - winW)/2;
 			ratio = calH;
-			offset = offsetX;
 			$(".imgContainer").css("transform","translate3d(-"+offsetX+"px, 0px, 0px) scale("+calH+","+calH+")");
 		}
 		
