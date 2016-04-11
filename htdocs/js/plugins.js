@@ -32,30 +32,33 @@
 	
 	var resW = 0;
 	var resH = 0;
-	var offset = 0;
-	var VITESSE_SLIDE_2 = 0.2;
+	var offset = 300;
+	var VITESSE_SLIDE_2 = 3;
 	var PUISSANCE_OPACITY_SLIDE_2 = 0.5;
 	var VITESSE_OPACITY_SLIDE_2 = 0.02;
+	var OFFSET_SLIDE_2 = 300;
 	function slide2() {
 		if(positionTopScroll>endPositionSlide1) {
-			var cal = VITESSE_SLIDE_2*(positionTopScroll - endPositionSlide1);
-			var effectOpacity = 250;
-			var test = PUISSANCE_OPACITY_SLIDE_2*(1-Math.exp(-VITESSE_OPACITY_SLIDE_2*(positionTopScroll-endPositionSlide1)));
-			
-			console.log(test+" "+$("#backgroundSlideText1").css("opacity"));
-			$("#secondSlideText1").css("top","calc(100% - "+cal+"px)");
-				if(cal/effectOpacity<0.5) {
-					$("#backgroundSlideText1").css("opacity",cal/effectOpacity);
-				}
-			if(parseInt($("#secondSlideText1").css("top"))<-($(window).height()*50/100)) {
-				$("#backgroundSlideText1").css("opacity",2-cal/(effectOpacity+($(window).height()*50/100)));
+			// Gere l'ensemble du premier rayon d'opacite...
+			var calOpacity = PUISSANCE_OPACITY_SLIDE_2*(1-Math.exp(-VITESSE_OPACITY_SLIDE_2*(positionTopScroll-endPositionSlide1)));
+			if(positionTopScroll>endPositionSlide1+OFFSET_SLIDE_2) {
+				calOpacity = PUISSANCE_OPACITY_SLIDE_2-VITESSE_OPACITY_SLIDE_2*0.2*(positionTopScroll-endPositionSlide1-OFFSET_SLIDE_2);
 			}
+			$("#backgroundSlideText1").css("opacity",calOpacity);
+			
+			
+			var calText = VITESSE_SLIDE_2*(positionTopScroll - endPositionSlide1);
+			$("#secondSlideText1").css("top","calc(100% - "+calText+"px)");
+		} else {
+			// Reset l'opacite en dehors du slide
+			$("#backgroundSlideText1").css("opacity",0);
 		}
 		if(positionTopScroll>480) {
 			zoom+=0.01;
 			var calW = $(".imgHolder").width() / 1440;
 			//$(".imgContainer").css("transform","translate3d("+offset+"px, 0px, 0px) scale("+(calW+zoom)+","+(calW+zoom)+")");
 		}
+		console.log("");
 	}
 	var zoom=0;
 	/**
