@@ -39,14 +39,14 @@ body {
 	background: #000;
 	height: 70px;
 	line-height: 70px;
-	color: #FFF;
+	color: #000;
 }
 
 #secondTopBar {
-	background: #000;
+	background: #000000;
 	height: 40px;
 	line-height: 40px;
-	color: #FFF;
+	color: #000;
 }
 
 #marginLeft {
@@ -54,7 +54,7 @@ body {
 	height: 100%;
 	width: 20px;
 	top: 0;
-	background-color: #000;
+	background-color: #000000;
 	z-index: 100;
 }
 
@@ -64,7 +64,7 @@ body {
 	width: 20px;
 	top: 0;
 	right: 0;
-	background-color: #000;
+	background-color: #000000;
 	z-index: 100;
 }
 

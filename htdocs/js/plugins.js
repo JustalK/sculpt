@@ -67,23 +67,38 @@
 	
 
 	function slide3() {
-		/**
-		if(positionTopScroll>480) {
-			zoom+=0.01;
-			var calW = $(".imgHolder").width() / 1440;
-			//$(".imgContainer").css("transform","translate3d("+offset+"px, 0px, 0px) scale("+(calW+zoom)+","+(calW+zoom)+")");
-		}
-		**/
 		if(positionTopScroll>endPositionSlide2) {
-			var calX = 1000+offset;
-			var calY = 0;
-			console.log(ratio);
-			positionX=-600;
-			adaptContent();
+			animation();
+			//var calX = 1000+offset;
+			//var calY = 0;
+			//console.log(positionTopScroll - endPositionSlide2);
+			//positionX=(positionTopScroll - endPositionSlide2)/100;
+			//adaptContent();
 			//$(".imgContainer").css("transform","translate3d(-"+calX+"px, "+calY+"px, 0px) scale("+2*ratio+","+2*ratio+")");
 			//$(".imgContainer").css("transform","translate3d(-"+calX+"px, "+calY+"px, 0px) scale("+(ratio)+","+(ratio)+")");
-			console.log("here");
+			//console.log("here");
 		}
+	}
+	
+	//TODO HOW TO USE AN OTHER ATTRIBUT :XXXXXX ?
+	function animation() {
+		$(".imgContainer").clearQueue();
+		$(".imgContainer").stop();
+		console.log("azeaze : "+positionY);
+		$(".imgContainer").css({"fontSize":positionX+"px","fontWeight":(-positionY)+"px"}).animate({"fontSize":"500px","fontWeight":"0px"},{
+			duration:5000,
+			step: function(now,fx) {
+				if(fx.prop == "fontSize") {
+					positionX = -now;
+				}
+				if(fx.prop == "fontWeight") {
+					//positionY = -now;
+					//console.log(now);
+				}
+				adaptContent();
+				//console.log( "Left: ", currentLeft );
+			}
+		})
 	}
 	
 	
@@ -129,7 +144,7 @@
 		if($(".imgContainer")[0].getBoundingClientRect().height<winH || $(".imgHolder")[0].getBoundingClientRect().height<$(".imgContainer")[0].getBoundingClientRect().height) {
 			var offsetX = positionX + ((calH*6000) - winW)/2;
 			ratio = calH;
-			$(".imgContainer").css("transform","translate3d(-"+offsetX+"px, 0px, 0px) scale("+calH+","+calH+")");
+			//$(".imgContainer").css("transform","translate3d(-"+offsetX+"px, 0px, 0px) scale("+calH+","+calH+")");
 		}
 		
 	}
