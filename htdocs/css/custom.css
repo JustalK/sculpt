@@ -71,8 +71,8 @@ body {
 
 .imgContainer {
 	position: absolute; 
-	width: 1440px;
-	height: 960px;
+	width: 6000px;
+	height: 4000px;
 	overflow:hidden;
 	transform-origin: top left;
 }

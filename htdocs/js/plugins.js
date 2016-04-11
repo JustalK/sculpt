@@ -5,31 +5,56 @@
 	$(window).scroll(function(event) {
 		// Get the value of the scroll position
 		positionTopScroll = $(window).scrollTop();
-		$("#firstSlide").css("top",-10*$(window).scrollTop()+"px");
-		secondSlide();
-	})
+		slide1();
+		slide2();
+	});
+	
+	/**
+	 * =======================================================================================>
+	 * SLIDE 1
+	 * =======================================================================================>
+	 */
+	var VITESSE_SLIDE_1 = 10;
+	function slide1() {
+		$("#firstSlide").css("top",-VITESSE_SLIDE_1*$(window).scrollTop()+"px");
+	}
+	
+	var endPositionSlide1;
+	function endSlide1() {
+		endPositionSlide1 = $(window).height()/VITESSE_SLIDE_1;
+	}
+
+	/**
+	 * =======================================================================================>
+	 * SLIDE 2
+	 * =======================================================================================>
+	 */	
 	
 	var resW = 0;
 	var resH = 0;
 	var offset = 0;
-	function secondSlide() {
-		if(positionTopScroll>50) {
-			var cal = 2*(positionTopScroll - 50);
+	var VITESSE_SLIDE_2 = 0.2;
+	var PUISSANCE_OPACITY_SLIDE_2 = 0.5;
+	var VITESSE_OPACITY_SLIDE_2 = 0.02;
+	function slide2() {
+		if(positionTopScroll>endPositionSlide1) {
+			var cal = VITESSE_SLIDE_2*(positionTopScroll - endPositionSlide1);
 			var effectOpacity = 250;
+			var test = PUISSANCE_OPACITY_SLIDE_2*(1-Math.exp(-VITESSE_OPACITY_SLIDE_2*(positionTopScroll-endPositionSlide1)));
+			
+			console.log(test+" "+$("#backgroundSlideText1").css("opacity"));
 			$("#secondSlideText1").css("top","calc(100% - "+cal+"px)");
 				if(cal/effectOpacity<0.5) {
 					$("#backgroundSlideText1").css("opacity",cal/effectOpacity);
 				}
 			if(parseInt($("#secondSlideText1").css("top"))<-($(window).height()*50/100)) {
 				$("#backgroundSlideText1").css("opacity",2-cal/(effectOpacity+($(window).height()*50/100)));
-				//$("#backgroundSlideText1").css(cal)
-				//$("#backgroundSlideText1").css("opacity",$("#secondSlideText1").css("top")-0.5-());
 			}
 		}
 		if(positionTopScroll>480) {
 			zoom+=0.01;
 			var calW = $(".imgHolder").width() / 1440;
-			$(".imgContainer").css("transform","translate3d("+offset+"px, 0px, 0px) scale("+(calW+zoom)+","+(calW+zoom)+")");
+			//$(".imgContainer").css("transform","translate3d("+offset+"px, 0px, 0px) scale("+(calW+zoom)+","+(calW+zoom)+")");
 		}
 	}
 	var zoom=0;
@@ -63,14 +88,14 @@
 		var imgH = $(".imgHolder").height();
 		var winW = $(window).width();
 		var winH = $(window).height();
-		var calW = $(".imgHolder").width() / 1440;
-		var calH = $(".imgHolder").height() / 960;
+		var calW = $(".imgHolder").width() / 6000;
+		var calH = $(".imgHolder").height() / 4000;
 		$(".imgContainer").css("transform","translate3d(0px, 0px, 0px) scale("+calW+","+calW+")");
 		resW = calW;
 		resH = calW;
 		offset = 0;
 		if($(".imgContainer")[0].getBoundingClientRect().height<winH || $(".imgHolder")[0].getBoundingClientRect().height<$(".imgContainer")[0].getBoundingClientRect().height) {
-			var offsetX = ((calH*1440) - winW)/2;
+			var offsetX = ((calH*6000) - winW)/2;
 			resW = calH;
 			resH = calH;
 			offset = offsetX;
@@ -84,5 +109,6 @@
 	 */
 	$( window ).on("resize load",function() {
 		adaptContent();
+		endSlide1();
 	});
 }());
