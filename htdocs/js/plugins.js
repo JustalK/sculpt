@@ -73,8 +73,10 @@
 			//var calY = 0;
 			//console.log(positionTopScroll - endPositionSlide2);
 			//positionX=(positionTopScroll - endPositionSlide2)/100;
-			//positionX-=10;
-			//adaptContent();
+
+			positionX = -$(window).width()*2;
+			positionY = -$(window).width()*1.08;
+			adaptContent();
 			//$(".imgContainer").css("transform","translate3d(-"+calX+"px, "+calY+"px, 0px) scale("+2*ratio+","+2*ratio+")");
 			//$(".imgContainer").css("transform","translate3d(-"+calX+"px, "+calY+"px, 0px) scale("+(ratio)+","+(ratio)+")");
 			//console.log("here");
@@ -128,8 +130,11 @@
 	});
 	
 	var ratio = 0;
+	var oldration = 0;
+	
 	var offset = 300;
 	var positionX = 0,positionY = 0;
+	var oldpositionX = 0,oldpositionY = 0;
 	function adaptContent() {
 		$(".imgHolder").each(function( index ) {
 			$(this).css("height",$( window ).height()+"px");
@@ -140,14 +145,11 @@
 		var winH = $(window).height();
 		var calW = ($(".imgHolder").width() - positionX) / 6000;
 		var calH = ($(".imgHolder").height() - positionY) / 4000;
-		
-		$(".imgContainer").css("transform","translate3d("+positionX+"px, "+positionY+"px, 0px) scale("+calW+","+calW+")");
-		ratio = calW;
-		offset = 0;
-		if($(".imgContainer")[0].getBoundingClientRect().height<winH || $(".imgHolder")[0].getBoundingClientRect().height<$(".imgContainer")[0].getBoundingClientRect().height) {
-			var offsetX = positionX + ((calH*6000) - winW)/2;
-			ratio = calH;
-			$(".imgContainer").css("transform","translate3d(-"+offsetX+"px, 0px, 0px) scale("+calH+","+calH+")");
+
+		if($(".imgContainer")[0].getBoundingClientRect().height>winH) {
+			$(".imgContainer").css("transform","translate3d("+positionX+"px, "+positionY+"px, 0px) scale("+calW+","+calW+")");
+			ratio = calW;
+			offset = 0;
 		}
 		
 	}
