@@ -68,11 +68,12 @@
 
 	function slide3() {
 		if(positionTopScroll>endPositionSlide2) {
-			animation();
+			//animation();
 			//var calX = 1000+offset;
 			//var calY = 0;
 			//console.log(positionTopScroll - endPositionSlide2);
 			//positionX=(positionTopScroll - endPositionSlide2)/100;
+			//positionX-=10;
 			//adaptContent();
 			//$(".imgContainer").css("transform","translate3d(-"+calX+"px, "+calY+"px, 0px) scale("+2*ratio+","+2*ratio+")");
 			//$(".imgContainer").css("transform","translate3d(-"+calX+"px, "+calY+"px, 0px) scale("+(ratio)+","+(ratio)+")");
@@ -81,6 +82,7 @@
 	}
 	
 	//TODO HOW TO USE AN OTHER ATTRIBUT :XXXXXX ?
+	/**
 	function animation() {
 		$(".imgContainer").clearQueue();
 		$(".imgContainer").stop();
@@ -95,11 +97,12 @@
 					//positionY = -now;
 					//console.log(now);
 				}
-				adaptContent();
+				//adaptContent();
 				//console.log( "Left: ", currentLeft );
 			}
 		})
 	}
+	**/
 	
 	
 	/**
@@ -126,7 +129,7 @@
 	
 	var ratio = 0;
 	var offset = 300;
-	var positionX = 0,positionY = -200;
+	var positionX = 0,positionY = 0;
 	function adaptContent() {
 		$(".imgHolder").each(function( index ) {
 			$(this).css("height",$( window ).height()+"px");
@@ -144,7 +147,7 @@
 		if($(".imgContainer")[0].getBoundingClientRect().height<winH || $(".imgHolder")[0].getBoundingClientRect().height<$(".imgContainer")[0].getBoundingClientRect().height) {
 			var offsetX = positionX + ((calH*6000) - winW)/2;
 			ratio = calH;
-			//$(".imgContainer").css("transform","translate3d(-"+offsetX+"px, 0px, 0px) scale("+calH+","+calH+")");
+			$(".imgContainer").css("transform","translate3d(-"+offsetX+"px, 0px, 0px) scale("+calH+","+calH+")");
 		}
 		
 	}

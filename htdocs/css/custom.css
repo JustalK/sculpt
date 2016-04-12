@@ -68,6 +68,15 @@ body {
 	z-index: 100;
 }
 
+#marginBottom {
+	position: fixed;
+	height: 20px;
+	width: 100%;
+	bottom: 0;
+	background-color: #000000;
+	z-index: 100;
+}
+
 
 .imgContainer {
 	position: absolute; 
