@@ -5,11 +5,38 @@
 	$(window).scroll(function(event) {
 		// Get the value of the scroll position
 		positionTopScroll = $(window).scrollTop();
+		transition();
 		slide1();
 		slide2();
 		slide3();
 	});
-	
+
+	/**
+	 * =======================================================================================>
+	 * TRANSITION
+	 * =======================================================================================>
+	 */	
+	var secondZoom = false;
+	function transition() {
+		if(!animated) {
+			if(positionTopScroll<endPositionSlide1) {
+				secondZoom = false;
+				zoom(0,0);
+			}
+			if(positionTopScroll>endPositionSlide1 && positionTopScroll<endPositionSlide2) {
+				secondZoom = false;
+				zoom(0,0);
+			}
+			if(positionTopScroll>endPositionSlide2 && positionTopScroll<endPositionSlide3) {
+				zoom(-$(window).width()*2,-$(window).width()*1.08);
+				secondZoom = false;
+			}
+			if(positionTopScroll>endPositionSlide3) {
+				secondZoom = true;
+				zoom(-$(window).width()*0.5,-$(window).width()*0.95);
+			}
+		}
+	}
 	/**
 	 * =======================================================================================>
 	 * SLIDE 1
@@ -48,10 +75,6 @@
 			
 			var calText = VITESSE_SLIDE_2*(positionTopScroll - endPositionSlide1);
 			$("#secondSlideText1").css("top","calc(100% - "+calText+"px)");
-			
-			if(positionTopScroll<endPositionSlide2 && !animated) {
-				zoom(0,0);
-			}
 		} else {
 			// Reset l'opacite en dehors du slide
 			$("#backgroundSlideText1").css("opacity",0);
@@ -72,26 +95,25 @@
 
 	function slide3() {
 		if(positionTopScroll>endPositionSlide2) {
-			//animation();
-			//var calX = 1000+offset;
-			//var calY = 0;
-			//console.log(positionTopScroll - endPositionSlide2);
-			//positionX=(positionTopScroll - endPositionSlide2)/100;
-			if(!animated) {
-				zoom(-$(window).width()*2,-$(window).width()*1.08);
-				console.log("NOT Animation");
-			} else {
-				console.log("Animation");
+			var calOpacity = PUISSANCE_OPACITY_SLIDE_2*(1-Math.exp(-VITESSE_OPACITY_SLIDE_2*(positionTopScroll-endPositionSlide2)));
+			if(positionTopScroll>endPositionSlide2+OFFSET_SLIDE_2) {
+				calOpacity = PUISSANCE_OPACITY_SLIDE_2-VITESSE_OPACITY_SLIDE_2*0.2*(positionTopScroll-endPositionSlide2-OFFSET_SLIDE_2);
 			}
-			//positionX = -$(window).width()*2;
-			//positionY = -$(window).width()*1.08;
-			//adaptContent();
-
-			//$(".imgContainer").css("transform","translate3d(-"+calX+"px, "+calY+"px, 0px) scale("+2*ratio+","+2*ratio+")");
-			//$(".imgContainer").css("transform","translate3d(-"+calX+"px, "+calY+"px, 0px) scale("+(ratio)+","+(ratio)+")");
-			//console.log("here");
+			$("#backgroundSlideText2").css("opacity",calOpacity);
+			
+			var calText = VITESSE_SLIDE_2*(positionTopScroll - endPositionSlide2);
+			$("#secondSlideText2").css("top","calc(100% - "+calText+"px)");
+		} else {
+			// Reset l'opacite en dehors du slide
+			$("#backgroundSlideText2").css("opacity",0);
 		}
 	}
+	
+	var endPositionSlide3;
+	function endSlide3() {
+		endPositionSlide3 = endPositionSlide2+OFFSET_SLIDE_2+$(window).height()/4;
+	}
+	
 	var step = 0;
 	var animated = false;
 	function zoom(posX,posY) {
@@ -189,12 +211,18 @@
 		var calW = ($(".imgHolder").width() - positionX) / 6000;
 		var calH = ($(".imgHolder").height() - positionY) / 4000;
 
+		console.log(positionX);
+		if(secondZoom) {
+			calW = ratio;
+		}
+		
 		if($(".imgContainer")[0].getBoundingClientRect().height>winH) {
 			$(".imgContainer").css("transform","translate3d("+positionX+"px, "+positionY+"px, 0px) scale("+calW+","+calW+")");
 			ratio = calW;
 			offset = 0;
 		}
-		
+
+		console.log(ratio);
 	}
 	
 	/**
@@ -204,5 +232,6 @@
 		adaptContent();
 		endSlide1();
 		endSlide2();
+		endSlide3();
 	});
 }());
