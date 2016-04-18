@@ -48,6 +48,10 @@
 			
 			var calText = VITESSE_SLIDE_2*(positionTopScroll - endPositionSlide1);
 			$("#secondSlideText1").css("top","calc(100% - "+calText+"px)");
+			
+			if(positionTopScroll<endPositionSlide2 && !animated) {
+				zoom(0,0);
+			}
 		} else {
 			// Reset l'opacite en dehors du slide
 			$("#backgroundSlideText1").css("opacity",0);
@@ -73,14 +77,53 @@
 			//var calY = 0;
 			//console.log(positionTopScroll - endPositionSlide2);
 			//positionX=(positionTopScroll - endPositionSlide2)/100;
+			if(!animated) {
+				zoom(-$(window).width()*2,-$(window).width()*1.08);
+				console.log("NOT Animation");
+			} else {
+				console.log("Animation");
+			}
+			//positionX = -$(window).width()*2;
+			//positionY = -$(window).width()*1.08;
+			//adaptContent();
 
-			positionX = -$(window).width()*2;
-			positionY = -$(window).width()*1.08;
-			adaptContent();
 			//$(".imgContainer").css("transform","translate3d(-"+calX+"px, "+calY+"px, 0px) scale("+2*ratio+","+2*ratio+")");
 			//$(".imgContainer").css("transform","translate3d(-"+calX+"px, "+calY+"px, 0px) scale("+(ratio)+","+(ratio)+")");
 			//console.log("here");
 		}
+	}
+	var step = 0;
+	var animated = false;
+	function zoom(posX,posY) {
+		var from = {"propertyX" : positionX,"propertyY" : positionY};
+		var to = {"propertyX" : posX,"propertyY" : posY};
+
+		jQuery(from).animate(to, {
+		    duration: 1000,
+		    step: function(now,fx) {
+		    	
+		    	// Pour le zoom sur l'axe X
+		    	if(fx.prop == "propertyX") {
+					animated=true;
+			        positionX = this.propertyX;
+		    	}
+		    	
+		    	// Pour le zoom sur l'axe Y
+		    	if(fx.prop == "propertyY") {
+					animated=true;
+			        positionY = this.propertyY;
+		    	}
+		        adaptContent();
+		    }, 
+		    complete : function() {
+		    	// Correctif, car la division par le temps ne donne pas toujours un nombre fixe
+		    	positionX = posX;
+		    	positionY = posY;
+		        adaptContent();
+		    	
+		    	animated=false;
+		    }
+		});
 	}
 	
 	//TODO HOW TO USE AN OTHER ATTRIBUT :XXXXXX ?
