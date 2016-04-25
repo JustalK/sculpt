@@ -201,25 +201,28 @@
 	var positionX = 0,positionY = 0;
 	var oldpositionX = 0,oldpositionY = 0;
 	function adaptContent() {
-		var imgW, imgH, winW, winH;
-		
+		$(".imgHolder").each(function( index ) {
+			$(this).css("height",$( window ).height()+"px");
+		});
+		var imgW = $(".imgHolder").width();
+		var imgH = $(".imgHolder").height();
 		var winW = $(window).width();
 		var winH = $(window).height();
-		$(".imgHolder").each(function( index ) {
-			$(this).css("height",winH+"px");
-		});
-		var imgW = $(".imgHolder").first().width();
-		var imgH = $(".imgHolder").first().height();
-		var calW = ($(".imgHolder").first().width() - positionX) / 6000;
-		var calH = ($(".imgHolder").first().height() - positionX) / 4000;
+		var calW = ($(".imgHolder").width() - positionX) / 6000;
+		var calH = ($(".imgHolder").height() - positionY) / 4000;
 
-		$(".imgContainer").css("transform","translate3d("+positionX+"px, "+positionY+"px, 0px) scale("+calW+","+calW+")");
-		
-		if($(".imgContainer")[0].getBoundingClientRect().height<winH) {
-			var offsetX = positionX + ((calH*6000) - winW)/2;
-			ratio = calH;
-			$(".imgContainer").css("transform","translate3d(-"+offsetX+"px, 0px, 0px) scale("+calH+","+calH+")");
+		console.log(positionX);
+		if(secondZoom) {
+			calW = ratio;
 		}
+		
+		if($(".imgContainer")[0].getBoundingClientRect().height>winH) {
+			$(".imgContainer").css("transform","translate3d("+positionX+"px, "+positionY+"px, 0px) scale("+calW+","+calW+")");
+			ratio = calW;
+			offset = 0;
+		}
+
+		console.log(ratio);
 	}
 	
 	/**
