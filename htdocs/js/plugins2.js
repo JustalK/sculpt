@@ -13,8 +13,9 @@ $( document ).ready(function() {
 		jQuery(zoomInStart).animate(zoomInEnd, {
 		    duration: timeZoom,
 		    step: function(now) {
-    		    	$("#img1").css("transform","scale("+now+","+now+")");
-    		    	$("#img2").css("transform","scale("+now+","+now+")");
+		    		$(".back-image").each(function() {
+	    		    	$(this).css("transform","scale("+now+","+now+")");
+		    		});
 		    }, 
 			complete : function() {
 				if(zoomState) {
@@ -38,21 +39,57 @@ $( document ).ready(function() {
 	});
 
 	var goToSlide1 = $(window).height();
+	var goToSlide2 = 3*$(window).height();
 	var state = 1;
 	function transition() {
 		//console.log(positionTopScroll+" "+goToSlide1);
 		if(positionTopScroll<goToSlide1 && state!=1) {
-			console.log("state1");
 			$("#img1").css("display","block");
-			$("#img2").css("display","none");
+    		$(".back-image").not("#img1").each(function() {
+    			$(this).css("display","none");
+    		});
 			state=1;
 		}
 		if(positionTopScroll>goToSlide1 && state!=2) {
-			state=2;
-			console.log("state2");
 			$("#img2").css("display","block");
-			$("#img1").css("display","none");
+    		$(".back-image").not("#img2").each(function() {
+    			$(this).css("display","none");
+    		});
+			state=2;
 		}
+		if(positionTopScroll>goToSlide2 && state!=3) {
+			$("#img3").css("display","block");
+    		$(".back-image").not("#img3").each(function() {
+    			$(this).css("display","none");
+    		});
+			state=3;
+		}
+	}
+	
+	init();
+	function init() {
+		//Angle
+		$(".tbl").css("border-left",$(window).width()+"px solid transparent");
+		$(".ttr").css("border-right",$(window).width()+"px solid transparent");
+		
+		$(".tbl").each(function() {
+			$(this).css("top",-100+"px");
+		});
+		
+		$(".ttr").each(function() {
+			$(this).css("top",$(window).height()+"px");
+		});
+		// Set the position of all the slide
+		var positionSlide = $(window).height();
+		$(".cache").each(function() {
+			$(this).css("top",positionSlide+"px");
+			positionSlide += 2*$(window).height();
+		});
+		
+		// Set the first image to display
+		$("#img1").css("display","block");
+		$("#img2").css("display","none");
+		
 	}
 });
 

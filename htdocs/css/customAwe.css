@@ -6,7 +6,7 @@ img {
 }
 
 body {
-	height: 300%;
+	height: 500%;
 }
 
 html {
@@ -23,9 +23,18 @@ html {
 	width: 0; 
 	height: 0; 
 	border-bottom: 100px solid #FFF; 
-	border-left: 1000px solid transparent; 
-	bottom: 0;
+	border-left: 1000px solid transparent;
 	right: 0;
+	position:absolute;
+}
+
+.ttr { 
+	width: 0; 
+	height: 0; 
+	border-top: 100px solid #FFF; 
+	border-right: 1000px solid transparent;
+	bottom: 0;
+	left: 0;
 	position:absolute;
 }
 
@@ -52,6 +61,14 @@ html {
 }
 
 #img2 {
+	transform: scale(1,1);
+	background: url(./../img/sculptHD2.jpg) no-repeat center center fixed; 
+	-webkit-background-size: cover; /* pour anciens Chrome et Safari */
+	background-size: cover; /* version standardisée */
+	height: 100%;
+}
+
+#img3 {
 	transform: scale(1,1);
 	background: url(./../img/sculptHD3.jpg) no-repeat center center fixed; 
 	-webkit-background-size: cover; /* pour anciens Chrome et Safari */
