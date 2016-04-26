@@ -66,6 +66,10 @@ $( document ).ready(function() {
 		}
 	}
 	
+	$( window ).on("resize",function() {
+		init();
+	});
+	
 	init();
 	function init() {
 		//Angle
@@ -89,7 +93,15 @@ $( document ).ready(function() {
 		// Set the first image to display
 		$("#img1").css("display","block");
 		$("#img2").css("display","none");
+		$("#img3").css("display","none");
 		
+		// Set the limite
+		goToSlide1 = $(window).height();
+		goToSlide2 = 3*$(window).height();
+		
+
+		positionTopScroll = $(window).scrollTop();
+		transition();
 	}
 });
 
