@@ -2,6 +2,7 @@ $( document ).ready(function() {
 
 	// Variable pour le script
 	var numberImg = $(".back-image").length;
+	var heightCache = 0;
 	
 	// Variable pour savoir sur quel slide on se trouve
 	var state = 1;
@@ -23,7 +24,7 @@ $( document ).ready(function() {
 		jQuery(zoomInStart).animate(zoomInEnd, {
 		    duration: timeZoom,
 		    step: function(now) {
-		    		$(".back-image").each(function() {
+		    		$(".back-image:visible").each(function() {
 	    		    	$(this).css("transform","scale("+now+","+now+")");
 		    		});
 		    }, 
@@ -59,8 +60,9 @@ $( document ).ready(function() {
 				state=1;
 			}
 		} else {
+			var calcul = 0;
 			for(var i=2;i<numberImg+1;i++) {
-				if(positionTopScroll>($(window).height()*(i*2-3)+offsetBetweenSlide*(i-1)) && state!=i) {
+				if(positionTopScroll>($(window).height()*(i-1)+offsetBetweenSlide*(i-1)+calcul) && state!=i) {
 					$("#img"+i).css("display","block");
 		    		$(".back-image").not("#img"+i).each(function() {
 		    			$(this).css("display","none");
@@ -68,6 +70,7 @@ $( document ).ready(function() {
 	    			$("#title").css("display","none");
 					state=i;
 				}
+				calcul = $(".cache:eq("+(i-2)+")").height();
 			}
 		}
 	}
@@ -78,7 +81,10 @@ $( document ).ready(function() {
 	
 	init();
 	function init() {
-		$("body").css("height",(2*numberImg-1)*$(window).height()+offsetBetweenSlide*numberImg+"px");
+		$(".cache").each(function() {
+			heightCache += $(this).height();
+		});
+		$("body").css("height",numberImg*$(window).height()+offsetBetweenSlide*numberImg+heightCache+"px");
 		
 		//Angle
 		$(".tbl").css("border-left",$(window).width()+"px solid transparent");
@@ -88,14 +94,14 @@ $( document ).ready(function() {
 			$(this).css("top",-100+"px");
 		});
 		
-		$(".ttr").each(function() {
-			$(this).css("top",$(window).height()+"px");
+		$(".ttr").each(function(index) {
+			$(this).css("top",$(".cache:eq("+index+")").height()+"px");
 		});
 		// Set the position of all the slide
 		var positionSlide = $(window).height()+offsetBetweenSlide;
-		$(".cache").each(function() {
+		$(".cache").each(function(index) {
 			$(this).css("top",positionSlide+"px");
-			positionSlide += 2*$(window).height()+offsetBetweenSlide;
+			positionSlide += $(window).height()*(index+1)+$(this).height()+offsetBetweenSlide;
 		});
 		
 		// Set the first image to display
