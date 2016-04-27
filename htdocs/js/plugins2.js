@@ -56,7 +56,7 @@ $( document ).ready(function() {
 	    		$(".back-image").not("#img1").each(function() {
 	    			$(this).css("display","none");
 	    		});
-    			$("#title").css("display","block");
+    			$("#title").css("color","#FFFFFF");
 				state=1;
 			}
 		} else {
@@ -67,7 +67,7 @@ $( document ).ready(function() {
 		    		$(".back-image").not("#img"+i).each(function() {
 		    			$(this).css("display","none");
 		    		});
-	    			$("#title").css("display","none");
+	    			$("#title").css("color","#000000");
 					state=i;
 				}
 				calcul = $(".cache:eq("+(i-2)+")").height();
