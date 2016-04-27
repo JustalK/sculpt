@@ -81,6 +81,7 @@ $( document ).ready(function() {
 	
 	init();
 	function init() {
+		heightCache = 0;
 		$(".cache").each(function() {
 			heightCache += $(this).height();
 		});
