@@ -102,8 +102,9 @@ $( document ).ready(function() {
 		var positionSlide = $(window).height()+offsetBetweenSlide;
 		$(".cache").each(function(index) {
 			$(this).css("top",positionSlide+"px");
-			positionSlide += $(window).height()*(index+1)+$(this).height()+offsetBetweenSlide;
+			positionSlide += $(window).height()+$(this).height()+offsetBetweenSlide;
 		});
+		$("#footer").css("top",positionSlide-$(window).height()-offsetBetweenSlide+"px");
 		
 		// Set the first image to display
 		$("#img1").css("display","block");
