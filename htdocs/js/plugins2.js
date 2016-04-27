@@ -75,7 +75,7 @@ $( document ).ready(function() {
 		}
 	}
 	
-	$( window ).on("resize",function() {
+	$( window ).on("resize load",function() {
 		init();
 	});
 	
