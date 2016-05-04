@@ -114,8 +114,58 @@ body {
 }
 
 
+a {
+	overflow: hidden;
+	position: relative;
+	display: block;
+	border: 1px solid #000;
+	color: #000;
+	padding: 10px 0px;
+	width: 100%;
+	letter-spacing: 2px;
+	text-transform: uppercase;
+	text-align: center;
+	font-size: 12px;
+	text-decoration: none;
+	margin-bottom:20px;
+}
 
 
+a > div {
+    -webkit-transition: all .3s 0s ease-in-out;
+    transition: all .3s 0s ease-in-out;
+    animation-direction: alternate;
+    -moz-animation-direction: alternate;
+    -webkit-animation-direction: alternate;
+    -o-animation-direction: alternate;
+}
+
+a:hover div {
+    -webkit-transform: translate3D(0,-26px,0);
+    -ms-transform: translate3D(0,-26px,0);
+    transform: translate3D(0,-26px,0);
+}
+
+a:hover::after {
+    -webkit-transform: translate3D(0,-26px,0);
+    -ms-transform: translate3D(0,-26px,0);
+    transform: translate3D(0,-26px,0);
+}
+
+a::after {
+    -webkit-transition: all .3s 0s ease-in-out;
+    transition: all .3s 0s ease-in-out;
+    animation-direction: alternate;
+    -moz-animation-direction: alternate;
+    -webkit-animation-direction: alternate;
+    -o-animation-direction: alternate;
+    content: attr(data-content);
+    position: absolute;
+    top: 100%;
+    width: 100%;
+    text-align: center;
+    left: 0;
+}
 
 
 

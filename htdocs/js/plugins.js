@@ -231,4 +231,5 @@
 		endSlide2();
 		endSlide3();
 	});
+	
 }());
