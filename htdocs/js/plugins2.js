@@ -80,31 +80,66 @@ $( document ).ready(function() {
 	});
 	
 	// Affichage du menu 2
+	$("#bmenu2").click(function() {
+		$("#menu2").css("display","block");	
+		$("#bemenu1").css("display","none");		
+		$("#bmenu1").css("display","none");			
+		$("#bmenu2").css("display","none");
+		$("#menu2").animate({"opacity":"0.8"},500,function(){
+			$("#menu2").animate({"width":"90%"},{ duration: 100, queue: false });
+			$("#menu2").animate({"height":"90%"},{ duration: 100, queue: false });
+		});
+	});
+	
+
+	$("#bmenu2ext").click(function() {
+		$("#menu2").animate({"width":"100%"},{ duration: 100, queue: false });
+		$("#menu2").animate({"height":"100%"},{ duration: 100, queue: false });	
+		$("#menu2").animate({"opacity":"0"},{ duration: 300, queue: false, complete: function() {
+			$("#menu2").css("display","none");		
+			$("#bmenu1").css("display","block");			
+			$("#bmenu2").css("display","block");
+		}});
+		
+	});
 	
 	
 	// Affichage du menu 1
-	$("#bmenu1").click(function() {
+	var menu2visible = false;
+	$("#bmenu1,#bemenu1ext").click(function() {
 		$("#menu1").css("display","block");		
 		$("#bemenu1").css("display","block");		
 		$("#bmenu1").css("display","none");			
-		$("#bmenu2").css("display","none");	
-		$("#bmenu1").animate({"opacity":"0"},{ duration: 50, queue: false });
-		$("#menu1").animate({"opacity":"0.8"},{ duration: 50, queue: false });
-		$("#menu1").animate({"width":"90%"},{ duration: 100, queue: false });
-		$("#menu1").animate({"height":"90%"},{ duration: 100, queue: false });
+		$("#bmenu2").css("display","none");
+		if($("#menu2").is(':visible')) {
+			$("#menu2").css("display","none");	
+			menu2visible=true;
+		}
+		$("#bmenu1").animate({"opacity":"0"},{ duration: 100, queue: false });
+		$("#menu1").animate({"opacity":"0.8"},{ duration: 100, queue: false });
+		$("#menu1").animate({"width":"90%"},{ duration: 300, queue: false });
+		$("#menu1").animate({"height":"90%"},{ duration: 300, queue: false });
 	});
+	
+	
 	
 	// Suppression d'affichage du menu 1
 	$("#bemenu1").click(function() {	
-		$("#bmenu1").css("display","block");
-		$("#bmenu2").css("display","block");		
-		$("#bmenu1").animate({"opacity":"1"},{ duration: 50, queue: false });
-		$("#menu1").animate({"opacity":"0"},{ duration: 50, queue: false, complete: function(){
-			$("#menu1").css("display","none");	
-			$("#bemenu1").css("display","none");	
-		}});
-		$("#menu1").animate({"width":"100%"},{ duration: 100, queue: false });
-		$("#menu1").animate({"height":"100%"},{ duration: 100, queue: false });
+			if(menu2visible) {
+				$("#menu2").css("display","block");	
+				menu2visible=false;
+				console.log("aeaze");
+			} else {
+				$("#bmenu1").css("display","block");
+				$("#bmenu2").css("display","block");
+			}
+			$("#bmenu1").animate({"opacity":"1"},{ duration: 100, queue: false });
+			$("#menu1").animate({"opacity":"0"},{ duration: 100, queue: false, complete: function(){
+				$("#menu1").css("display","none");	
+				$("#bemenu1").css("display","none");	
+			}});
+			$("#menu1").animate({"width":"100%"},{ duration: 300, queue: false });
+			$("#menu1").animate({"height":"100%"},{ duration: 300, queue: false });
 	});	
 	
 	init();

@@ -158,14 +158,14 @@ html {
 	position: fixed;
 	top: 5px;
 	left: 15px;
-	z-index: 2000;
+	z-index: 2001;
 	cursor: pointer;
 	line-height:40px;
 	color:#888a85;
 	font-size: 2vw;
 }
 
-#bmenu2 {
+#bmenu2, #bmenu2ext {
 	position: fixed;
 	top: 5px;
 	right: 15px;
@@ -176,7 +176,11 @@ html {
 	font-size: 2vw;
 }
 
-#bemenu1 {
+#bmenu2ext {
+	position: absolute;
+}
+
+#bemenu1, #bemenu1ext {
 	position: absolute;
 	top: 5px;
 	left: 15px;
@@ -188,6 +192,21 @@ html {
 }
 
 #menu1 {
+	display: none;
+	position: fixed;
+	height: 100%;
+	width: 100%;
+	opacity: 0;
+	background: #FFFFFF;
+	margin: auto;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	z-index: 10000;
+}
+
+#menu2 {
 	display: none;
 	position: fixed;
 	height: 100%;
