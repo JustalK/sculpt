@@ -79,18 +79,25 @@ $( document ).ready(function() {
 		init();
 	});
 	
+	// Affichage du menu 2
+	
+	
+	// Affichage du menu 1
 	$("#bmenu1").click(function() {
 		$("#menu1").css("display","block");		
 		$("#bemenu1").css("display","block");		
-		$("#bmenu1").css("display","none");		
+		$("#bmenu1").css("display","none");			
+		$("#bmenu2").css("display","none");	
 		$("#bmenu1").animate({"opacity":"0"},{ duration: 50, queue: false });
 		$("#menu1").animate({"opacity":"0.8"},{ duration: 50, queue: false });
 		$("#menu1").animate({"width":"90%"},{ duration: 100, queue: false });
 		$("#menu1").animate({"height":"90%"},{ duration: 100, queue: false });
 	});
 	
+	// Suppression d'affichage du menu 1
 	$("#bemenu1").click(function() {	
-		$("#bmenu1").css("display","block");		
+		$("#bmenu1").css("display","block");
+		$("#bmenu2").css("display","block");		
 		$("#bmenu1").animate({"opacity":"1"},{ duration: 50, queue: false });
 		$("#menu1").animate({"opacity":"0"},{ duration: 50, queue: false, complete: function(){
 			$("#menu1").css("display","none");	
