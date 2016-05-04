@@ -246,3 +246,14 @@ a {
 a:hover {
 	color: #00FF00;
 }
+
+.imageSlide {
+	width:50%;
+	height:50%;
+	position:absolute;
+	margin: auto;
+	left:0;
+	right:0;
+	top:0;
+	bottom:0;
+}
