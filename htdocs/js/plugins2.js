@@ -2,6 +2,7 @@ $( document ).ready(function() {
 
 	// Variable pour le script
 	var numberImg = $(".back-image").length;
+	var numImgCollection = $(".imageSlide").length
 	var heightCache = 0;
 	
 	// Variable pour savoir sur quel slide on se trouve
@@ -202,32 +203,30 @@ $( document ).ready(function() {
 
 		$(".imageSlide").each(function(index) {
 			$(this).css("left",$(this).position().left-$(this).width()/4+index*$(window).width()/4+"px");
-			if(index!=0) {
-				$(this).css("transform","translateY(-50%) rotateY(1.2)");
-			}
 		});
 		
 		positionTopScroll = $(window).scrollTop();
 		transition();
 	}
 	
+	var imgCollection = 0;
 	$("#arrowLeft").click(function() {
-		var scale = 1.2;
-		$(".imageSlide").each(function(index) {
-				$(this).animate({"left":($(this).position().left-$(window).width()/2)+"px"},{duration:1000, queue: false, step: function(now) {
-						if(index==1) {
-							
-						}
-					}
-				});
-				
-		});
+		console.log(imgCollection+" "+numImgCollection);
+		if(imgCollection < numImgCollection - 1) {
+			$(".imageSlide").each(function(index) {
+						$(this).animate({"left":($(this).position().left-$(window).width()/2)+"px"},{duration:1000, queue: false});
+			});
+			imgCollection++;
+		}
 	});
 	
 	$("#arrowRight").click(function() {
-		$(".imageSlide").each(function(index) {
-				$(this).animate({"left":($(this).position().left+$(window).width()/2)+"px"},{duration:1000, queue: false});
-		});
+		if(imgCollection>0) {
+			$(".imageSlide").each(function(index) {
+						$(this).animate({"left":($(this).position().left+$(window).width()/2)+"px"},{duration:1000, queue: false});
+			});
+			imgCollection--;
+		}
 	});	
 	
 });
