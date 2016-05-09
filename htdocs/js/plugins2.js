@@ -88,11 +88,17 @@ $( document ).ready(function() {
 		$("#menu2").animate({"opacity":"0.8"},500,function(){
 			$("#menu2").animate({"width":"90%"},{ duration: 100, queue: false });
 			$("#menu2").animate({"height":"90%"},{ duration: 100, queue: false });
+			$(".imageSlide").each(function() {
+				$(this).animate({"opacity":"1"},100);
+			});
 		});
 	});
 	
 
 	$("#bmenu2ext").click(function() {
+		$(".imageSlide").each(function() {
+			$(this).animate({"opacity":"0"},100);
+		});
 		$("#menu2").animate({"width":"100%"},{ duration: 100, queue: false });
 		$("#menu2").animate({"height":"100%"},{ duration: 100, queue: false });	
 		$("#menu2").animate({"opacity":"0"},{ duration: 300, queue: false, complete: function() {
@@ -107,6 +113,9 @@ $( document ).ready(function() {
 	// Affichage du menu 1
 	var menu2visible = false;
 	$("#bmenu1,#bemenu1ext").click(function() {
+		$(".imageSlide").each(function() {
+			$(this).animate({"opacity":"0"},100);
+		});
 		$("#menu1").css("display","block");		
 		$("#bemenu1").css("display","block");		
 		$("#bmenu1").css("display","none");			
@@ -128,10 +137,15 @@ $( document ).ready(function() {
 			if(menu2visible) {
 				$("#menu2").css("display","block");	
 				menu2visible=false;
-				console.log("aeaze");
+				$(".imageSlide").each(function() {
+					$(this).animate({"opacity":"1"},100);
+				});
 			} else {
 				$("#bmenu1").css("display","block");
 				$("#bmenu2").css("display","block");
+				$(".imageSlide").each(function() {
+					$(this).animate({"opacity":"0"},100);
+				});
 			}
 			$("#bmenu1").animate({"opacity":"1"},{ duration: 100, queue: false });
 			$("#menu1").animate({"opacity":"0"},{ duration: 100, queue: false, complete: function(){

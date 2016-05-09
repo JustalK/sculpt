@@ -257,5 +257,6 @@ a:hover {
  	left:50%;
 	transform: translateY(-50%);
 	transform-origin: center center;
+	opacity: 0;
 }
 
