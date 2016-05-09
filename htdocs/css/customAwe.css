@@ -258,5 +258,6 @@ a:hover {
 	transform: translateY(-50%);
 	transform-origin: center center;
 	opacity: 0;
+	display: none;
 }
 
