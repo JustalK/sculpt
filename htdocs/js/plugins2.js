@@ -186,9 +186,36 @@ $( document ).ready(function() {
 			$(this).css("display","none");
 		});
 
+		$(".imageSlide").each(function(index) {
+			$(this).css("left",$(this).position().left-$(this).width()/4+index*$(window).width()/4+"px");
+			if(index!=0) {
+				$(this).css("transform","translateY(-50%) rotateY(1.2)");
+			}
+		});
+		
 		positionTopScroll = $(window).scrollTop();
 		transition();
 	}
+	
+	$("#arrowLeft").click(function() {
+		var scale = 1.2;
+		$(".imageSlide").each(function(index) {
+				$(this).animate({"left":($(this).position().left-$(window).width()/2)+"px"},{duration:1000, queue: false, step: function(now) {
+						if(index==1) {
+							
+						}
+					}
+				});
+				
+		});
+	});
+	
+	$("#arrowRight").click(function() {
+		$(".imageSlide").each(function(index) {
+				$(this).animate({"left":($(this).position().left+$(window).width()/2)+"px"},{duration:1000, queue: false});
+		});
+	});	
+	
 });
 
 
