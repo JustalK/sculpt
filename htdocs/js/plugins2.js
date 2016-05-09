@@ -202,7 +202,19 @@ $( document ).ready(function() {
 		});
 
 		$(".imageSlide").each(function(index) {
-			$(this).css("left",$(this).position().left-$(this).width()/4+index*$(window).width()/4+"px");
+			if(index==0) {
+				$(this).css("left",slotmiddle+"px");
+			} else if(index==1) {
+				$(this).css("left",slotright+"px");
+			} else {
+				$(this).css("left",2*$(window).width()+"px");
+			}
+		});
+
+		$(".imageSlide").each(function(index) {
+			if(index!=0) {
+				$(this).css("transform","translateY(-50%) scale(1.2,1.2)");
+			}
 		});
 		
 		positionTopScroll = $(window).scrollTop();
@@ -210,11 +222,48 @@ $( document ).ready(function() {
 	}
 	
 	var imgCollection = 0;
+
+	var offsetcollection = 200;
+	var slotleft = -$(".imageSlide").first().width()+offsetcollection;
+	var slotmiddle = $(window).width()/2-$(".imageSlide").first().width()/2;
+	var slotright = ($(window).width()-$(".imageSlide").first().width())+$(".imageSlide").first().width()-offsetcollection;
 	$("#arrowLeft").click(function() {
-		console.log(imgCollection+" "+numImgCollection);
 		if(imgCollection < numImgCollection - 1) {
+			var scale=1.2;
+			var scale2=1;
 			$(".imageSlide").each(function(index) {
-						$(this).animate({"left":($(this).position().left-$(window).width()/2)+"px"},{duration:1000, queue: false});
+						if(index==imgCollection) {
+							$(this).animate({"left":slotleft+"px"},{duration:1000, queue: false, step: function() {
+								if(scale2<1.2) {
+									scale2+=0.02;	
+									$(this).css("transform","translateY(-50%) scale("+scale2+","+scale2+")");
+								}
+							}});							
+						}	
+						if(index==imgCollection+1) {
+							$(this).animate({"left":slotmiddle+"px"},{duration:1000, queue: false, step: function() {
+								if(scale>1) {
+									scale-=0.02;	
+									$(this).css("transform","translateY(-50%) scale("+scale+","+scale+")");
+								}
+							}});							
+						}						
+						if(index==imgCollection+2) {
+							$(this).animate({"left":slotright+"px"},{duration:1000, queue: false, step: function() {
+								if(scale2<1.2) {
+									scale2+=0.02;	
+									$(this).css("transform","translateY(-50%) scale("+scale2+","+scale2+")");
+								}
+							}});							
+						}	
+						if(index<imgCollection) {
+							$(this).animate({"left":-2*$(window).width()+"px"},{duration:1000, queue: false, step: function() {
+								if(scale>1) {
+									scale-=0.02;	
+									$(this).css("transform","translateY(-50%) scale("+scale+","+scale+")");
+								}
+							}});							
+						}							
 			});
 			imgCollection++;
 		}
@@ -222,8 +271,41 @@ $( document ).ready(function() {
 	
 	$("#arrowRight").click(function() {
 		if(imgCollection>0) {
+			var scale=1.2;
+			var scale2=1;
 			$(".imageSlide").each(function(index) {
-						$(this).animate({"left":($(this).position().left+$(window).width()/2)+"px"},{duration:1000, queue: false});
+						if(index==imgCollection) {
+							$(this).animate({"left":slotright+"px"},{duration:1000, queue: false, step: function() {
+								if(scale2<1.2) {
+									scale2+=0.02;	
+									$(this).css("transform","translateY(-50%) scale("+scale2+","+scale2+")");
+								}
+							}});							
+						}	
+						if(index==imgCollection-1) {
+							$(this).animate({"left":slotmiddle+"px"},{duration:1000, queue: false, step: function() {
+								if(scale>1) {
+									scale-=0.02;	
+									$(this).css("transform","translateY(-50%) scale("+scale+","+scale+")");
+								}
+							}});							
+						}						
+						if(index==imgCollection-2) {
+							$(this).animate({"left":slotleft+"px"},{duration:1000, queue: false, step: function() {
+								if(scale2<1.2) {
+									scale2+=0.02;	
+									$(this).css("transform","translateY(-50%) scale("+scale2+","+scale2+")");
+								}
+							}});							
+						}	
+						if(index>imgCollection) {
+							$(this).animate({"left":2*$(window).width()+"px"},{duration:1000, queue: false, step: function() {
+								if(scale2<1.2) {
+									scale2+=0.02;	
+									$(this).css("transform","translateY(-50%) scale("+scale2+","+scale2+")");
+								}
+							}});							
+						}
 			});
 			imgCollection--;
 		}
