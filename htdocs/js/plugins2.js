@@ -88,12 +88,23 @@ $( document ).ready(function() {
 		$("#bmenu2").css("display","none");
 		$("#menu2").animate({"opacity":"0.8"},500,function(){
 			$("#menu2").animate({"width":"90%"},{ duration: 100, queue: false });
-			$("#menu2").animate({"height":"90%"},{ duration: 100, queue: false });
+			$("#menu2").animate({"height":"90%"},{ duration: 100, queue: false, complete: function() {
+				$(".imageCatalogue").each(function(index) {
+					if(index==0) {
+						slotmiddle = $("#menu2").width()/2-$(".imageCatalogue").first().width()/2;
+						$(this).css("left",slotmiddle+"px");
+					} else if(index==1) {
+						slotright = $("#menu2").width()-$(".imageCatalogue").first().width();
+						$(this).css("left",slotright+"px");
+					} else {
+						slotleft = $(".imageCatalogue").first().width()/2;
+						$(this).css("left","0px");
+					}
+					$(this).css("display","block");
+					$(this).animate({"opacity":"1"},100);
+				});
+			} });
 			
-			$(".imageSlide").each(function() {
-				$(this).css("display","block");
-				$(this).animate({"opacity":"1"},100);
-			});
 		});
 	});
 	
@@ -140,7 +151,8 @@ $( document ).ready(function() {
 	
 	
 	// Suppression d'affichage du menu 1
-	$("#bemenu1").click(function() {	
+	$("#bemenu1").click(function() {
+			
 			if(menu2visible) {
 				$("#menu2").css("display","block");	
 				menu2visible=false;
@@ -211,16 +223,6 @@ $( document ).ready(function() {
 		});
 
 		$(".imageSlide").each(function(index) {
-			if(index==0) {
-				$(this).css("left",slotmiddle+"px");
-			} else if(index==1) {
-				$(this).css("left",slotright+"px");
-			} else {
-				$(this).css("left",2*$(window).width()+"px");
-			}
-		});
-
-		$(".imageSlide").each(function(index) {
 			if(index!=0) {
 				$(this).css("transform","translateY(-50%) scale(1.2,1.2)");
 			}
@@ -234,7 +236,7 @@ $( document ).ready(function() {
 
 	var offsetcollection = 200;
 	var slotleft = -$(".imageSlide").first().width()+offsetcollection;
-	var slotmiddle = $(window).width()/2-$(".imageSlide").first().width()/2;
+	var slotmiddle = $("#menu2").width()/2-$(".imageCatalogue").first().width()/2;
 	var slotright = ($(window).width()-$(".imageSlide").first().width())+$(".imageSlide").first().width()-offsetcollection;
 	$("#arrowLeft").click(function() {
 		if(imgCollection < numImgCollection - 1) {

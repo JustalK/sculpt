@@ -261,3 +261,45 @@ a:hover {
 	display: none;
 }
 
+.imageCatalogue {
+	position:absolute;
+	z-index: 20000;
+	transform-origin: center center;
+	opacity: 0;
+ 	top: 50%;
+	transform: translateY(-50%);
+}
+
+#arrowLeft {
+	cursor:pointer;
+	text-align: center;
+	display: inline;
+	font-size: 80px;
+	font-weight: 900;
+	position: absolute;
+	left: 0;
+ 	top: 50%;
+	transform: translateY(-50%);
+	z-index: 30000;
+}
+
+#arrowRight {
+	cursor:pointer;
+	text-align: center;
+	display: inline;
+	font-size: 80px;
+	font-weight: 900;
+	position: absolute;
+	right: 0;
+ 	top: 50%;
+	transform: translateY(-50%);
+	z-index: 30000;
+}
+
+#menuPosition {
+	position:absolute;
+	width:100%;
+	height:100%;
+	position:absolute;
+	text-align:center;
+}
