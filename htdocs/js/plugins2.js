@@ -2,7 +2,7 @@ $( document ).ready(function() {
 
 	// Variable pour le script
 	var numberImg = $(".back-image").length;
-	var numImgCollection = $(".imageSlide").length
+	var numImgCollection = $(".imageCatalogue").length
 	var heightCache = 0;
 	
 	// Variable pour savoir sur quel slide on se trouve
@@ -91,17 +91,21 @@ $( document ).ready(function() {
 			$("#menu2").animate({"height":"90%"},{ duration: 100, queue: false, complete: function() {
 				$(".imageCatalogue").each(function(index) {
 					if(index==0) {
-						slotmiddle = $("#menu2").width()/2-$(".imageCatalogue").first().width()/2;
-						$(this).css("left",slotmiddle+"px");
-					} else if(index==1) {
-						slotright = $("#menu2").width()-$(".imageCatalogue").first().width();
-						$(this).css("left",slotright+"px");
-					} else {
-						slotleft = $(".imageCatalogue").first().width()/2;
+						$(this).css("width",$(this).width()/2);
+						slotleft = $(this).width()/2;
 						$(this).css("left","0px");
+					} else if(index==1) {
+						slotmiddle = $("#menu2").width()/2-$(this).width()/2;
+						$(this).css("left",slotmiddle+"px");
+					} else {
+						$(this).css("width",$(this).width()/2);
+						slotright = $("#menu2").width()-$(this).width();
+						$(this).css("left",slotright+"px");
 					}
-					$(this).css("display","block");
-					$(this).animate({"opacity":"1"},100);
+					if(index<3) {
+						$(this).css("display","block");
+						$(this).animate({"opacity":"1"},100);
+					}
 				});
 			} });
 			
@@ -129,7 +133,7 @@ $( document ).ready(function() {
 	// Affichage du menu 1
 	var menu2visible = false;
 	$("#bmenu1,#bemenu1ext").click(function() {
-		$(".imageSlide").each(function() {
+		$(".imageSlide").each(function(index) {
 			$(this).animate({"opacity":"0"},100,function() {
 				$(this).css("display","none");
 			});
@@ -221,12 +225,6 @@ $( document ).ready(function() {
 		$(".back-image").not("#img1").each(function() {
 			$(this).css("display","none");
 		});
-
-		$(".imageSlide").each(function(index) {
-			if(index!=0) {
-				$(this).css("transform","translateY(-50%) scale(1.2,1.2)");
-			}
-		});
 		
 		positionTopScroll = $(window).scrollTop();
 		transition();
@@ -238,7 +236,28 @@ $( document ).ready(function() {
 	var slotleft = -$(".imageSlide").first().width()+offsetcollection;
 	var slotmiddle = $("#menu2").width()/2-$(".imageCatalogue").first().width()/2;
 	var slotright = ($(window).width()-$(".imageSlide").first().width())+$(".imageSlide").first().width()-offsetcollection;
+	
 	$("#arrowLeft").click(function() {
+		$(".imageCatalogue").each(function(index) {
+			if(index==imgCollection) {
+				$(this).animate({"opacity" : "0"},{duration:300, queue: false});
+			}
+			if(index==imgCollection+1) {
+				$(this).animate({"width" : $(this).width()/2},{duration:300, queue: false});
+				$(this).animate({"left":"0px"},{duration:300, queue: false});
+			}	
+			if(index==imgCollection+2) {								
+				$(this).animate({"width" : $(this).width()*2},{duration:300, queue: false});
+				$(this).animate({"left":slotmiddle+"px"},{duration:300, queue: false, complete: function() {
+					$(".imageCatalogue").eq(imgCollection+2).animate({"opacity" : "1"},{duration:300, queue: false});
+				}});
+			}
+			
+		});
+		imgCollection++;
+	});
+		
+		/**
 		if(imgCollection < numImgCollection - 1) {
 			var scale=1.2;
 			var scale2=1;
@@ -276,9 +295,7 @@ $( document ).ready(function() {
 							}});							
 						}							
 			});
-			imgCollection++;
-		}
-	});
+			**/
 	
 	$("#arrowRight").click(function() {
 		if(imgCollection>0) {
