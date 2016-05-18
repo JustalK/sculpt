@@ -91,14 +91,15 @@ $( document ).ready(function() {
 		$("#menu2").animate({"opacity":"0.8"},500,function(){
 			$("#menu2").animate({"width":"90%"},{ duration: 100, queue: false });
 			$("#menu2").animate({"height":"90%"},{ duration: 100, queue: false, complete: function() {
-				imgCatalogue = 0;
+				$(".imageCatalogue").clearQueue();
+				imgCollection = 0;
 				if(!once) {
 					once = true;
 					sizeImg = $(".imageCatalogue").eq(0).width();
 				}
 				$(".imageCatalogue").each(function() {
 					$(this).css("display","block");
-					$(this).css("left","0px");
+					$(this).css("left","0");
 					$(this).css("width",sizeImg);
 					$(this).css("opacity","0");
 				});
@@ -249,19 +250,14 @@ $( document ).ready(function() {
 	var imgCollection = 0;
 	var imgInterract = 0;
 	var offsetcollection = 200;
-	var slotleft = -$(".imageSlide").first().width()+offsetcollection;
-	var slotmiddle = $("#menu2").width()/2-$(".imageCatalogue").first().width()/2;
-	var slotright = ($(window).width()-$(".imageSlide").first().width())+$(".imageSlide").first().width()-offsetcollection;
-	
-	var jewelries = [];
+	var slotleft;
+	var slotmiddle;
+	var slotright;
 	var imgCollection = 0;
-	$(".imageCatalogue").each(function() {
-		jewelries.push($(this));
-	});
 	
 	$("#arrowLeft").click(function() {
+		$(".imageCatalogue").finish();
 		$(".imageCatalogue").each(function(index) {
-			console.log(imgCollection);
 			if(imgCollection==numImgCollection-2) {
 				if(index==0) {
 					$(this).animate({"width" : $(this).width()*2},{duration:300, queue: false});
