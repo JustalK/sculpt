@@ -94,6 +94,7 @@ $( document ).ready(function() {
 				imgCatalogue = 0;
 				$(".imageCatalogue").each(function() {
 					$(this).css("display","block");
+					$(this).css("left","0px");
 					$(this).css("opacity","0");
 				});
 				if(!once) {
