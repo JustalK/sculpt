@@ -271,6 +271,16 @@ $( document ).ready(function() {
 		});
 	});
 	
+	var mouseDown = false;
+	$(document).mousedown(function() {
+		mouseDown = true;
+		console.log("window : "+mouseDown);
+	});
+	
+	$(window).mouseup(function() {
+		mouseDown = false;
+	});
+	
 	$("#arrowLeft").click(function() {
 		$(".imageCatalogue").each(function() {
 			$(this).stop(true,true);
