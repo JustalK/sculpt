@@ -81,6 +81,8 @@ $( document ).ready(function() {
 	});
 	
 	// Affichage du menu 2
+	var once = false;
+	var sizeImg = 0;
 	$("#bmenu2").click(function() {
 		$("#menu2").css("display","block");	
 		$("#bemenu1").css("display","none");		
@@ -89,17 +91,27 @@ $( document ).ready(function() {
 		$("#menu2").animate({"opacity":"0.8"},500,function(){
 			$("#menu2").animate({"width":"90%"},{ duration: 100, queue: false });
 			$("#menu2").animate({"height":"90%"},{ duration: 100, queue: false, complete: function() {
+				imgCatalogue = 0;
+				$(".imageCatalogue").each(function() {
+					$(this).css("display","block");
+					$(this).css("opacity","0");
+				});
+				if(!once) {
+					once = true;
+					sizeImg = $(".imageCatalogue").eq(0).width();
+				}
 				$(".imageCatalogue").each(function(index) {
 					if(index==0) {
-						$(this).css("width",$(this).width()/2);
-						slotleft = $(this).width()/2;
+						$(this).css("width",sizeImg/2);
+						slotleft = sizeImg/2;
 						$(this).css("left","0px");
 					} else if(index==1) {
-						slotmiddle = $("#menu2").width()/2-$(this).width()/2;
+						$(this).css("width",sizeImg);
+						slotmiddle = $("#menu2").width()/2-sizeImg/2;
 						$(this).css("left",slotmiddle+"px");
 					} else {
-						$(this).css("width",$(this).width()/2);
-						slotright = $("#menu2").width()-$(this).width();
+						$(this).css("width",sizeImg/2);
+						slotright = $("#menu2").width()-sizeImg/2;
 						$(this).css("left",slotright+"px");
 					}
 					if(index<3) {
@@ -228,6 +240,8 @@ $( document ).ready(function() {
 		
 		positionTopScroll = $(window).scrollTop();
 		transition();
+		
+		
 	}
 	
 	var imgCollection = 0;
