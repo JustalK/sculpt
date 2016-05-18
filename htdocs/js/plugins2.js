@@ -120,6 +120,8 @@ $( document ).ready(function() {
 					if(index<3) {
 						$(this).css("display","block");
 						$(this).animate({"opacity":"1"},100);
+					} else {
+						$(this).css("display","none");
 					}
 				});
 			} });
@@ -271,14 +273,18 @@ $( document ).ready(function() {
 		});
 	});
 	
-	var mouseDown = false;
-	$(document).mousedown(function() {
-		mouseDown = true;
-		console.log("window : "+mouseDown);
+	var tmpOpacity=0;
+	$(".imageCatalogue").mouseover(function() {
+		tmpOpacity = $(this).css("opacity");
+		$(this).css("opacity","0.5");
 	});
 	
-	$(window).mouseup(function() {
-		mouseDown = false;
+	$(".imageCatalogue").mouseout(function() {
+		$(this).css("opacity",tmpOpacity);
+	});
+	
+	$(".imageCatalogue").click(function() {
+		window.open("./collection_single_template.html","_self");
 	});
 	
 	$("#arrowLeft").click(function() {
@@ -291,6 +297,7 @@ $( document ).ready(function() {
 					$(this).animate({"width" : $(this).width()*2},{duration:300, queue: false});
 					$(this).animate({"left":slotmiddle+"px"},{duration:300, queue: false, complete: function() {
 						$(".imageCatalogue").eq(1).css("left",slotright+"px");
+						$(".imageCatalogue").eq(1).css("display","block");
 						$(".imageCatalogue").eq(1).animate({"opacity" : "1"},{duration:300, queue: false});
 					}});
 				}	
@@ -301,12 +308,14 @@ $( document ).ready(function() {
 				if(index==numImgCollection-2) {
 					$(this).animate({"opacity" : "0"},{duration:300, queue: false, complete: function() {
 						$(this).css("left",slotright+"px");
+						$(this).css("display","none");
 					}});
 				}
 			} else if(imgCollection==numImgCollection-1) {
 				if(index==numImgCollection-1) {
 					$(this).animate({"opacity" : "0"},{duration:300, queue: false, complete: function() {
 						$(this).css("left",slotright+"px");
+						$(this).css("display","none");
 					}});
 				}			
 				if(index==0) {
@@ -317,6 +326,7 @@ $( document ).ready(function() {
 					$(this).animate({"width" : $(this).width()*2},{duration:300, queue: false});
 					$(this).animate({"left":slotmiddle+"px"},{duration:300, queue: false, complete: function() {
 						$(".imageCatalogue").eq(2).css("left",slotright+"px");
+						$(".imageCatalogue").eq(2).css("display","block");
 						$(".imageCatalogue").eq(2).animate({"opacity" : "1"},{duration:300, queue: false});
 						imgCollection=0;
 					}});
@@ -325,6 +335,7 @@ $( document ).ready(function() {
 				if(index==imgCollection) {
 					$(this).animate({"opacity" : "0"},{duration:300, queue: false, complete: function() {
 						$(this).css("left",slotright+"px");
+						$(this).css("display","none");
 					}});
 				}
 				if(index==imgCollection+1) {
@@ -334,9 +345,11 @@ $( document ).ready(function() {
 				if(index==imgCollection+2) {								
 					$(this).animate({"width" : $(this).width()*2},{duration:300, queue: false});
 					$(this).animate({"left":slotmiddle+"px"},{duration:300, queue: false, complete: function() {
+						$(".imageCatalogue").eq(imgCollection+2).css("display","block");
 						$(".imageCatalogue").eq(imgCollection+2).animate({"opacity" : "1"},{duration:300, queue: false});
 						if(imgCollection==numImgCollection-2) {
 							$(".imageCatalogue").eq(0).css("left",slotright+"px");
+							$(".imageCatalogue").eq(0).css("display","block");
 							$(".imageCatalogue").eq(0).animate({"opacity" : "1"},{duration:300, queue: false});
 						}
 					}});
@@ -357,6 +370,7 @@ $( document ).ready(function() {
 					$(this).animate({"width" : $(this).width()*2},{duration:300, queue: false});
 					$(this).animate({"left":slotmiddle+"px"},{duration:300, queue: false, complete: function() {
 						$(".imageCatalogue").eq(numImgCollection-1).css("left","0px");
+						$(".imageCatalogue").eq(numImgCollection-1).css("display","block");
 						$(".imageCatalogue").eq(numImgCollection-1).animate({"opacity" : "1"},{duration:300, queue: false});
 					}});
 				}
@@ -365,7 +379,9 @@ $( document ).ready(function() {
 					$(this).animate({"left":slotright+"px"},{duration:300, queue: false});
 				}
 				if(index==2) {
-					$(this).animate({"opacity" : "0"},{duration:300, queue: false});
+					$(this).animate({"opacity" : "0"},{duration:300, queue: false,complete: function() {
+						$(this).css("display","none");
+					}});
 				}
 			} else if(imgCollection==4) {
 				if(index==0) {
@@ -373,12 +389,15 @@ $( document ).ready(function() {
 					$(this).animate({"left":slotright+"px"},{duration:300, queue: false});
 				}
 				if(index==1) {
-					$(this).animate({"opacity" : "0"},{duration:300, queue: false});
+					$(this).animate({"opacity" : "0"},{duration:300, queue: false, complete: function() {
+						$(this).css("display","none");
+					}});
 				}
 				if(index==numImgCollection-1) {
 					$(this).animate({"width" : $(this).width()*2},{duration:300, queue: false});
 					$(this).animate({"left":slotmiddle+"px"},{duration:300, queue: false, complete: function() {
 						$(".imageCatalogue").eq(numImgCollection-2).css("left","0px");
+						$(".imageCatalogue").eq(numImgCollection-2).css("display","block");
 						$(".imageCatalogue").eq(numImgCollection-2).animate({"opacity" : "1"},{duration:300, queue: false});
 					}});
 				}		
@@ -387,6 +406,7 @@ $( document ).ready(function() {
 					$(this).animate({"width" : $(this).width()*2},{duration:300, queue: false});
 					$(this).animate({"left":slotmiddle+"px"},{duration:300, queue: false, complete: function() {
 						$(".imageCatalogue").eq(imgCollection).css("left","0px");
+						$(".imageCatalogue").eq(imgCollection).css("display","block");
 						$(".imageCatalogue").eq(imgCollection).animate({"opacity" : "1"},{duration:300, queue: false});
 					}});
 				}
@@ -395,7 +415,9 @@ $( document ).ready(function() {
 					$(this).animate({"left":slotright+"px"},{duration:300, queue: false});
 				}
 				if(index==imgCollection+2 || index==0) {
-					$(this).animate({"opacity" : "0"},{duration:300, queue: false});
+					$(this).animate({"opacity" : "0"},{duration:300, queue: false, complete: function() {
+						$(this).css("display","none");
+					}});
 				}
 			}
 

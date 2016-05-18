@@ -280,6 +280,10 @@ a:hover {
 	transform: translateY(-50%);
 }
 
+.imageCatalogue:hover {
+	cursor: pointer;
+}
+
 #arrowLeft {
 	cursor:pointer;
 	text-align: center;
