@@ -92,15 +92,16 @@ $( document ).ready(function() {
 			$("#menu2").animate({"width":"90%"},{ duration: 100, queue: false });
 			$("#menu2").animate({"height":"90%"},{ duration: 100, queue: false, complete: function() {
 				imgCatalogue = 0;
-				$(".imageCatalogue").each(function() {
-					$(this).css("display","block");
-					$(this).css("left","0px");
-					$(this).css("opacity","0");
-				});
 				if(!once) {
 					once = true;
 					sizeImg = $(".imageCatalogue").eq(0).width();
 				}
+				$(".imageCatalogue").each(function() {
+					$(this).css("display","block");
+					$(this).css("left","0px");
+					$(this).css("width",sizeImg);
+					$(this).css("opacity","0");
+				});
 				$(".imageCatalogue").each(function(index) {
 					if(index==0) {
 						$(this).css("width",sizeImg/2);

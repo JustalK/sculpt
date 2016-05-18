@@ -132,7 +132,7 @@ html {
 
 #img1 {
 	transform: scale(1,1);
-	background: url(./../img/sculptHD1.jpg) no-repeat center center fixed; 
+	background: url(./../img/s2.jpg) no-repeat center center fixed; 
 	-webkit-background-size: cover; /* pour anciens Chrome et Safari */
 	background-size: cover; /* version standardisée */
 	height: 100%;
@@ -140,7 +140,7 @@ html {
 
 #img2 {
 	transform: scale(1,1);
-	background: url(./../img/sculptHD2.jpg) no-repeat center center fixed; 
+	background: url(./../img/s1.jpg) no-repeat center center fixed; 
 	-webkit-background-size: cover; /* pour anciens Chrome et Safari */
 	background-size: cover; /* version standardisée */
 	height: 100%;
@@ -148,7 +148,7 @@ html {
 
 #img3 {
 	transform: scale(1,1);
-	background: url(./../img/sculptHD3.jpg) no-repeat center center fixed; 
+	background: url(./../img/s2.jpg) no-repeat center center fixed; 
 	-webkit-background-size: cover; /* pour anciens Chrome et Safari */
 	background-size: cover; /* version standardisée */
 	height: 100%;
@@ -241,6 +241,7 @@ a {
 	letter-spacing: 2px;
 	text-transform: uppercase;
 	text-decoration: none;
+	z-index: 50000;
 }
 
 a:hover {
