@@ -231,110 +231,134 @@ $( document ).ready(function() {
 	}
 	
 	var imgCollection = 0;
-
+	var imgInterract = 0;
 	var offsetcollection = 200;
 	var slotleft = -$(".imageSlide").first().width()+offsetcollection;
 	var slotmiddle = $("#menu2").width()/2-$(".imageCatalogue").first().width()/2;
 	var slotright = ($(window).width()-$(".imageSlide").first().width())+$(".imageSlide").first().width()-offsetcollection;
 	
+	var jewelries = [];
+	var imgCollection = 0;
+	$(".imageCatalogue").each(function() {
+		jewelries.push($(this));
+	});
+	
 	$("#arrowLeft").click(function() {
 		$(".imageCatalogue").each(function(index) {
-			if(index==imgCollection) {
-				$(this).animate({"opacity" : "0"},{duration:300, queue: false});
+			console.log(imgCollection);
+			if(imgCollection==numImgCollection-2) {
+				if(index==0) {
+					$(this).animate({"width" : $(this).width()*2},{duration:300, queue: false});
+					$(this).animate({"left":slotmiddle+"px"},{duration:300, queue: false, complete: function() {
+						$(".imageCatalogue").eq(1).css("left",slotright+"px");
+						$(".imageCatalogue").eq(1).animate({"opacity" : "1"},{duration:300, queue: false});
+					}});
+				}	
+				if(index==numImgCollection-1) {
+					$(this).animate({"width" : $(this).width()/2},{duration:300, queue: false});
+					$(this).animate({"left":"0px"},{duration:300, queue: false});
+				}
+				if(index==numImgCollection-2) {
+					$(this).animate({"opacity" : "0"},{duration:300, queue: false, complete: function() {
+						$(this).css("left",slotright+"px");
+					}});
+				}
+			} else if(imgCollection==numImgCollection-1) {
+				if(index==numImgCollection-1) {
+					$(this).animate({"opacity" : "0"},{duration:300, queue: false, complete: function() {
+						$(this).css("left",slotright+"px");
+					}});
+				}			
+				if(index==0) {
+					$(this).animate({"width" : $(this).width()/2},{duration:300, queue: false});
+					$(this).animate({"left":"0px"},{duration:300, queue: false});
+				}
+				if(index==1) {
+					$(this).animate({"width" : $(this).width()*2},{duration:300, queue: false});
+					$(this).animate({"left":slotmiddle+"px"},{duration:300, queue: false, complete: function() {
+						$(".imageCatalogue").eq(2).css("left",slotright+"px");
+						$(".imageCatalogue").eq(2).animate({"opacity" : "1"},{duration:300, queue: false});
+						imgCollection=0;
+					}});
+				}
+			} else {
+				if(index==imgCollection) {
+					$(this).animate({"opacity" : "0"},{duration:300, queue: false, complete: function() {
+						$(this).css("left",slotright+"px");
+					}});
+				}
+				if(index==imgCollection+1) {
+					$(this).animate({"width" : $(this).width()/2},{duration:300, queue: false});
+					$(this).animate({"left":"0px"},{duration:300, queue: false});
+				}	
+				if(index==imgCollection+2) {								
+					$(this).animate({"width" : $(this).width()*2},{duration:300, queue: false});
+					$(this).animate({"left":slotmiddle+"px"},{duration:300, queue: false, complete: function() {
+						$(".imageCatalogue").eq(imgCollection+2).animate({"opacity" : "1"},{duration:300, queue: false});
+						if(imgCollection==numImgCollection-2) {
+							$(".imageCatalogue").eq(0).css("left",slotright+"px");
+							$(".imageCatalogue").eq(0).animate({"opacity" : "1"},{duration:300, queue: false});
+						}
+					}});
+				}
 			}
-			if(index==imgCollection+1) {
-				$(this).animate({"width" : $(this).width()/2},{duration:300, queue: false});
-				$(this).animate({"left":"0px"},{duration:300, queue: false});
-			}	
-			if(index==imgCollection+2) {								
-				$(this).animate({"width" : $(this).width()*2},{duration:300, queue: false});
-				$(this).animate({"left":slotmiddle+"px"},{duration:300, queue: false, complete: function() {
-					$(".imageCatalogue").eq(imgCollection+2).animate({"opacity" : "1"},{duration:300, queue: false});
-				}});
-			}
-			
 		});
 		imgCollection++;
 	});
-		
-		/**
-		if(imgCollection < numImgCollection - 1) {
-			var scale=1.2;
-			var scale2=1;
-			$(".imageSlide").each(function(index) {
-						if(index==imgCollection) {
-							$(this).animate({"left":slotleft+"px"},{duration:1000, queue: false, step: function() {
-								if(scale2<1.2) {
-									scale2+=0.02;	
-									$(this).css("transform","translateY(-50%) scale("+scale2+","+scale2+")");
-								}
-							}});							
-						}	
-						if(index==imgCollection+1) {
-							$(this).animate({"left":slotmiddle+"px"},{duration:1000, queue: false, step: function() {
-								if(scale>1) {
-									scale-=0.02;	
-									$(this).css("transform","translateY(-50%) scale("+scale+","+scale+")");
-								}
-							}});							
-						}						
-						if(index==imgCollection+2) {
-							$(this).animate({"left":slotright+"px"},{duration:1000, queue: false, step: function() {
-								if(scale2<1.2) {
-									scale2+=0.02;	
-									$(this).css("transform","translateY(-50%) scale("+scale2+","+scale2+")");
-								}
-							}});							
-						}	
-						if(index<imgCollection) {
-							$(this).animate({"left":-2*$(window).width()+"px"},{duration:1000, queue: false, step: function() {
-								if(scale>1) {
-									scale-=0.02;	
-									$(this).css("transform","translateY(-50%) scale("+scale+","+scale+")");
-								}
-							}});							
-						}							
-			});
-			**/
 	
 	$("#arrowRight").click(function() {
-		if(imgCollection>0) {
-			var scale=1.2;
-			var scale2=1;
-			$(".imageSlide").each(function(index) {
-						if(index==imgCollection) {
-							$(this).animate({"left":slotright+"px"},{duration:1000, queue: false, step: function() {
-								if(scale2<1.2) {
-									scale2+=0.02;	
-									$(this).css("transform","translateY(-50%) scale("+scale2+","+scale2+")");
-								}
-							}});							
-						}	
-						if(index==imgCollection-1) {
-							$(this).animate({"left":slotmiddle+"px"},{duration:1000, queue: false, step: function() {
-								if(scale>1) {
-									scale-=0.02;	
-									$(this).css("transform","translateY(-50%) scale("+scale+","+scale+")");
-								}
-							}});							
-						}						
-						if(index==imgCollection-2) {
-							$(this).animate({"left":slotleft+"px"},{duration:1000, queue: false, step: function() {
-								if(scale2<1.2) {
-									scale2+=0.02;	
-									$(this).css("transform","translateY(-50%) scale("+scale2+","+scale2+")");
-								}
-							}});							
-						}	
-						if(index>imgCollection) {
-							$(this).animate({"left":2*$(window).width()+"px"},{duration:1000, queue: false, step: function() {
-								if(scale2<1.2) {
-									scale2+=0.02;	
-									$(this).css("transform","translateY(-50%) scale("+scale2+","+scale2+")");
-								}
-							}});							
-						}
-			});
+		$(".imageCatalogue").each(function(index) {
+			if(imgCollection==0) {
+				if(index==0) {
+					$(this).animate({"width" : $(this).width()*2},{duration:300, queue: false});
+					$(this).animate({"left":slotmiddle+"px"},{duration:300, queue: false, complete: function() {
+						$(".imageCatalogue").eq(numImgCollection-1).css("left","0px");
+						$(".imageCatalogue").eq(numImgCollection-1).animate({"opacity" : "1"},{duration:300, queue: false});
+					}});
+				}
+				if(index==1) {
+					$(this).animate({"width" : $(this).width()/2},{duration:300, queue: false});
+					$(this).animate({"left":slotright+"px"},{duration:300, queue: false});
+				}
+				if(index==2) {
+					$(this).animate({"opacity" : "0"},{duration:300, queue: false});
+				}
+			} else if(imgCollection==4) {
+				if(index==0) {
+					$(this).animate({"width" : $(this).width()/2},{duration:300, queue: false});
+					$(this).animate({"left":slotright+"px"},{duration:300, queue: false});
+				}
+				if(index==1) {
+					$(this).animate({"opacity" : "0"},{duration:300, queue: false});
+				}
+				if(index==numImgCollection-1) {
+					$(this).animate({"width" : $(this).width()*2},{duration:300, queue: false});
+					$(this).animate({"left":slotmiddle+"px"},{duration:300, queue: false, complete: function() {
+						$(".imageCatalogue").eq(numImgCollection-2).css("left","0px");
+						$(".imageCatalogue").eq(numImgCollection-2).animate({"opacity" : "1"},{duration:300, queue: false});
+					}});
+				}		
+			} else {
+				if(index==imgCollection) {					
+					$(this).animate({"width" : $(this).width()*2},{duration:300, queue: false});
+					$(this).animate({"left":slotmiddle+"px"},{duration:300, queue: false, complete: function() {
+						$(".imageCatalogue").eq(imgCollection).css("left","0px");
+						$(".imageCatalogue").eq(imgCollection).animate({"opacity" : "1"},{duration:300, queue: false});
+					}});
+				}
+				if(index==imgCollection+1) {
+					$(this).animate({"width" : $(this).width()/2},{duration:300, queue: false});
+					$(this).animate({"left":slotright+"px"},{duration:300, queue: false});
+				}
+				if(index==imgCollection+2 || index==0) {
+					$(this).animate({"opacity" : "0"},{duration:300, queue: false});
+				}
+			}
+
+		});
+		if(imgCollection==0) {
+			imgCollection=4;
+		} else {
 			imgCollection--;
 		}
 	});	
