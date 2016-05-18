@@ -255,6 +255,22 @@ $( document ).ready(function() {
 	var slotright;
 	var imgCollection = 0;
 	
+	$(window).on("resize",function() {
+		$(".imageCatalogue").each(function(index) {
+			if(index==imgCollection) {
+				$(this).css("left","0px");
+			}
+			if(index==imgCollection+1 || (imgCollection+1==numImgCollection && index==0)) {
+				slotmiddle = $("#menu2").width()/2-sizeImg/2;
+				$(this).css("left",slotmiddle+"px");
+			}
+			if(index==imgCollection+2 || (imgCollection+2==numImgCollection && index==0) || (imgCollection+1==numImgCollection && index==1)) {
+				slotright = $("#menu2").width()-sizeImg/2;
+				$(this).css("left",slotright+"px");
+			}
+		});
+	});
+	
 	$("#arrowLeft").click(function() {
 		$(".imageCatalogue").finish();
 		$(".imageCatalogue").each(function(index) {
