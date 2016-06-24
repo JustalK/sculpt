@@ -43,8 +43,8 @@
 }
 
 img {
-    height: auto !important;
-    width: 100% !important
+    /*height: auto !important;
+    width: 100% !important*/
 }
 
 body {
@@ -147,18 +147,32 @@ html {
 	position: absolute;
 	top: 40%;
 	left: 0;
-	right: 0;
 	width: 20%;
 	margin: auto;
 }
 
+.logo-sclpt {
+	position: absolute;
+	z-index: 100000;
+	top: 0px;
+	width: 300px;
+	left: 0;
+	right: 0;
+	margin: auto;	
+}
+
+.logo-sclpt-footer {
+	width: 300px;
+}
 
 #footerline {
 	position:absolute;
 	bottom:0;
 	width:100%;
 	text-align:center;
-	margin-bottom:50px;
+	margin-bottom:30px;
+	font-weight: bold;
+	font-size: 1vw;
 }
 
 .cut {
@@ -170,7 +184,7 @@ html {
 
 #img1 {
 	transform: scale(1,1);
-	background: url(./../img/s2.jpg) no-repeat center center fixed; 
+	background: url(./../img/1920/DSC05467-Edit%20-%201920.jpg) no-repeat center center fixed; 
 	-webkit-background-size: cover; /* pour anciens Chrome et Safari */
 	background-size: cover; /* version standardisée */
 	height: 100%;
@@ -178,7 +192,7 @@ html {
 
 #img2 {
 	transform: scale(1,1);
-	background: url(./../img/s1.jpg) no-repeat center center fixed; 
+	background: url(./../img/1920/DSC06551%20-%201920.jpg) no-repeat center center fixed; 
 	-webkit-background-size: cover; /* pour anciens Chrome et Safari */
 	background-size: cover; /* version standardisée */
 	height: 100%;
@@ -186,24 +200,33 @@ html {
 
 #img3 {
 	transform: scale(1,1);
-	background: url(./../img/s2.jpg) no-repeat center center fixed; 
+	background: url(./../img/1920/DSC05467-Edit%20-%201920.jpg) no-repeat center center fixed; 
 	-webkit-background-size: cover; /* pour anciens Chrome et Safari */
 	background-size: cover; /* version standardisée */
 	height: 100%;
 }
 
-#bmenu1 {
+#bmenu1,#bmenu2 {
 	position: fixed;
+	color:#FFFFFF;
 	top: 5px;
-	left: 15px;
 	z-index: 2001;
 	cursor: pointer;
 	line-height:40px;
-	color:#888a85;
-	font-size: 2vw;
+	font-size: 1vw;
+	font-weight: bold;
+	font-family: 'futura_ltbook', serif;
 }
 
-#bmenu2, #bmenu2ext {
+#bmenu1 {
+	left: 25px;
+}
+
+#bmenu2 {
+	right: 25px;
+}
+
+#bmenu2ext {
 	position: fixed;
 	top: 15px;
 	right: 25px;
@@ -211,10 +234,12 @@ html {
 	cursor: pointer;
 	line-height:40px;
 	color:#888a85;
-	font-size: 2vw;
+	font-size: 1vw;
+	font-weight: bold;
+	font-family: 'futura_ltbook', serif;
 }
 
-#bmenu2center {
+#bmenu2center, #bmenu1center {
 	position: absolute;
 	top: 45px;
 	text-align: center;
@@ -224,12 +249,14 @@ html {
 	font-family: 'futura_ltbook', serif;
 }
 
-#bmenu2ext {
+#bmenu2ext, #bmenu1ext {
 	position: absolute;
 	font-size: 1vw;
 	font-weight: bold;
 	font-family: 'futura_ltbook', serif;
 	color:#000000;
+	top: 15px;
+	right: 25px;
 }
 
 #bemenu1, #bemenu1ext {
@@ -277,13 +304,14 @@ html {
 
 .menutexte {
 	position: absolute;
-  top: 50%;
-  -webkit-transform: translateY(-50%);
-  -ms-transform: translateY(-50%);
-  transform: translateY(-50%);
+  	top: 50%;
+  	-webkit-transform: translateY(-50%);
+  	-ms-transform: translateY(-50%);
+  	transform: translateY(-50%);
 	width:100%;
 	text-align: center;
-	font-size: 2vw;
+	font-size: 3vw;
+	font-weight: 900;
 }
 
 .menu1texte {
@@ -299,7 +327,7 @@ a {
 }
 
 a:hover {
-	color: #00FF00;
+	color: #888a85;
 }
 
 .noselect {
@@ -343,9 +371,8 @@ a:hover {
 	text-align: center;
 	display: inline;
 	font-size: 80px;
-	font-weight: 900;
 	position: absolute;
-	left: 0;
+	left: 5%;
  	top: 50%;
 	transform: translateY(-50%);
 	z-index: 30000;
@@ -356,9 +383,8 @@ a:hover {
 	text-align: center;
 	display: inline;
 	font-size: 80px;
-	font-weight: 900;
 	position: absolute;
-	right: 0;
+	right: 5%;
  	top: 50%;
 	transform: translateY(-50%);
 	z-index: 30000;

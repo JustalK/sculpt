@@ -112,7 +112,7 @@ $( document ).ready(function() {
 						$(this).css("left","10%");
 					} else if(index==1) {
 						$(this).css("width",sizeImg/1.2);
-						slotmiddle = $("#menu2").width()/2-sizeImg/2+sizeImg*0.2/2;
+						slotmiddle = $("#menu2").width()/2-sizeImg/2+sizeImg*0.19/2;
 						$(this).css("left",slotmiddle+"px");
 					} else {
 						$(this).css("width",sizeImg/2);
