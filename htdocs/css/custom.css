@@ -205,28 +205,44 @@ html {
 
 #bmenu2, #bmenu2ext {
 	position: fixed;
-	top: 5px;
-	right: 15px;
+	top: 15px;
+	right: 25px;
 	z-index: 2000;
 	cursor: pointer;
 	line-height:40px;
 	color:#888a85;
 	font-size: 2vw;
+}
+
+#bmenu2center {
+	position: absolute;
+	top: 45px;
+	text-align: center;
+	width: 100%;
+	font-size: 1vw;
+	font-weight: bold;
+	font-family: 'futura_ltbook', serif;
 }
 
 #bmenu2ext {
 	position: absolute;
+	font-size: 1vw;
+	font-weight: bold;
+	font-family: 'futura_ltbook', serif;
+	color:#000000;
 }
 
 #bemenu1, #bemenu1ext {
 	position: absolute;
-	top: 5px;
-	left: 15px;
+	top: 15px;
+	left: 25px;
 	z-index: 2000;
 	cursor: pointer;
 	line-height:40px;
-	color:#888a85;
-	font-size: 2vw;
+	color:#000000;
+	font-size: 1vw;
+	font-weight: bold;
+	font-family: 'futura_ltbook', serif;
 }
 
 #menu1 {

@@ -109,14 +109,14 @@ $( document ).ready(function() {
 					if(index==0) {
 						$(this).css("width",sizeImg/2);
 						slotleft = sizeImg/2;
-						$(this).css("left","0px");
+						$(this).css("left","10%");
 					} else if(index==1) {
-						$(this).css("width",sizeImg);
-						slotmiddle = $("#menu2").width()/2-sizeImg/2;
+						$(this).css("width",sizeImg/1.2);
+						slotmiddle = $("#menu2").width()/2-sizeImg/2+sizeImg*0.2/2;
 						$(this).css("left",slotmiddle+"px");
 					} else {
 						$(this).css("width",sizeImg/2);
-						slotright = $("#menu2").width()-sizeImg/2;
+						slotright = $("#menu2").width()-sizeImg/2-10*$("#menu2").width()/100;
 						$(this).css("left",slotright+"px");
 					}
 					if(index<3) {
