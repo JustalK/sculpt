@@ -88,9 +88,11 @@ $( document ).ready(function() {
 		$("#bemenu1").css("display","none");		
 		$("#bmenu1").css("display","none");			
 		$("#bmenu2").css("display","none");
-		$("#menu2").animate({"opacity":"0.8"},500,function(){
-			$("#menu2").animate({"width":"90%"},{ duration: 100, queue: false });
-			$("#menu2").animate({"height":"90%"},{ duration: 100, queue: false, complete: function() {
+		$("#menu2").animate({"opacity":"0.95"},500,function(){
+			var cal_height = $(window).height() - 50;
+			var cal_width = $(window).width() - 50;
+			$("#menu2").animate({"width":cal_width+"px"},{ duration: 100, queue: false });
+			$("#menu2").animate({"height":cal_height+"px"},{ duration: 100, queue: false, complete: function() {
 				$(".imageCatalogue").clearQueue();
 				imgCollection = 0;
 				if(!once) {
