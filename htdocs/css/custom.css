@@ -152,13 +152,17 @@ html {
 }
 
 .logo-sclpt {
-	position: absolute;
-	z-index: 100000;
+	position: fixed;
+	z-index: 500;
 	top: 0px;
 	width: 300px;
 	left: 0;
 	right: 0;
 	margin: auto;	
+}
+
+.logo-sclpt-menu {
+	position: absolute;
 }
 
 .logo-sclpt-footer {

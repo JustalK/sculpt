@@ -166,9 +166,11 @@ $( document ).ready(function() {
 			menu2visible=true;
 		}
 		$("#bmenu1").animate({"opacity":"0"},{ duration: 100, queue: false });
-		$("#menu1").animate({"opacity":"0.8"},{ duration: 100, queue: false });
-		$("#menu1").animate({"width":"90%"},{ duration: 300, queue: false });
-		$("#menu1").animate({"height":"90%"},{ duration: 300, queue: false });
+		$("#menu1").animate({"opacity":"0.95"},{ duration: 100, queue: false });
+		var cal_height = $(window).height() - 50;
+		var cal_width = $(window).width() - 50;
+		$("#menu1").animate({"width":cal_width+"px"},{ duration: 300, queue: false });
+		$("#menu1").animate({"height":cal_height+"px"},{ duration: 300, queue: false });
 	});
 	
 	
