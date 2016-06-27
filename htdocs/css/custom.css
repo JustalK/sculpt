@@ -206,7 +206,7 @@ html {
 	z-index: 2001;
 	cursor: pointer;
 	line-height:40px;
-	font-size: 1vw;
+	font-size: 1.3vw;
 	font-weight: bold;
 	font-family: 'futura_ltbook', serif;
 }
@@ -227,7 +227,7 @@ html {
 	cursor: pointer;
 	line-height:40px;
 	color:#888a85;
-	font-size: 1vw;
+	font-size: 1.3vw;
 	font-weight: bold;
 	font-family: 'futura_ltbook', serif;
 }
@@ -237,14 +237,14 @@ html {
 	top: 45px;
 	text-align: center;
 	width: 100%;
-	font-size: 1vw;
+	font-size: 1.3vw;
 	font-weight: bold;
 	font-family: 'futura_ltbook', serif;
 }
 
 #bmenu2ext, #bmenu1ext {
 	position: absolute;
-	font-size: 1vw;
+	font-size: 1.3vw;
 	font-weight: bold;
 	font-family: 'futura_ltbook', serif;
 	color:#000000;
@@ -260,7 +260,7 @@ html {
 	cursor: pointer;
 	line-height:40px;
 	color:#000000;
-	font-size: 1vw;
+	font-size: 1.3vw;
 	font-weight: bold;
 	font-family: 'futura_ltbook', serif;
 }
@@ -447,4 +447,8 @@ a:hover {
 	display: block;
 	background-color: white;
 	border-radius: 0px;
+}
+
+.avatar {
+	margin-right: -20px; 
 }
