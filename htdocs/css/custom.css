@@ -410,6 +410,11 @@ a:hover {
 	background-color: black;
 }
 
+.section {
+	margin-top: 50px;
+	margin-bottom: 50px;
+}
+
 .img-offset {
 	padding-top: 120px;
 }
