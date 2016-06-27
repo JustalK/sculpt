@@ -9,7 +9,7 @@ $( document ).ready(function() {
 	var state = 1;
 	
 	// Variable pour les slides
-	var offsetBetweenSlide = 50;
+	var offsetBetweenSlide = 250;
 	
 	// Variable pour le zoom
 	var timeZoom = 10000;
@@ -209,7 +209,7 @@ $( document ).ready(function() {
 		$(".cache").each(function() {
 			heightCache += $(this).height();
 		});
-		$("body").css("height",numberImg*$(window).height()+offsetBetweenSlide*numberImg+heightCache+"px");
+		$("body").css("height",numberImg*$(window).height()+heightCache+"px");
 		
 		//Angle
 		$(".tbl").css("border-left",$(window).width()+"px solid transparent");
@@ -218,11 +218,11 @@ $( document ).ready(function() {
 		$(".ttl").css("border-left",$(window).width()+"px solid transparent");
 		
 		$(".tbl").each(function() {
-			$(this).css("top",-100+"px");
+			$(this).css("top",-200+"px");
 		});
 
 		$(".tbr").each(function() {
-			$(this).css("top",-100+"px");
+			$(this).css("top",-200+"px");
 		});		
 		
 		$(".ttr").each(function(index) {

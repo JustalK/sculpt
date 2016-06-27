@@ -64,41 +64,29 @@ html {
 }
 
 .tbl { 
-	width: 0; 
-	height: 0; 
-	border-bottom: 100px solid #FFF; 
-	border-left: 1000px solid transparent;
+	width: 100%;
+	height: 200px;
 	right: 0;
-	position:absolute;
+	position: absolute;
+	background-image: url("./../img/brush_top_section_white_1440.png");
+	background-size: 100% auto;
 }
 
 .tbr { 
-	width: 0; 
-	height: 0; 
-	border-bottom: 100px solid #FFF; 
-	border-right: 1000px solid transparent;
-	right: 0;
-	position:absolute;
 }
 
 .ttr { 
-	width: 0; 
-	height: 0; 
-	border-top: 100px solid #FFF; 
-	border-right: 1000px solid transparent;
+	width: 100%; 
+	height: 200px; 
 	bottom: 0;
 	left: 0;
 	position:absolute;
+	background-image: url("./../img/brush_bottom_section_white_1440.png");
+	background-size: 100% auto;
 }
 
 .ttl { 
-	width: 0; 
-	height: 0; 
-	border-top: 100px solid #FFF; 
-	border-left: 1000px solid transparent;
-	bottom: 0;
-	left: 0;
-	position:absolute;
+
 }
 
 #title {
@@ -133,11 +121,11 @@ html {
 }
 
 #footer {
-	background: #FFFFFF;
+	background: #000;
 	position:absolute;
 	width:100%;
 	min-height:100%;
-	opacity: 0.5;
+	opacity: 0.8;
 	padding-top: 50px;
 	z-index:1;
 }
@@ -167,6 +155,7 @@ html {
 
 .logo-sclpt-footer {
 	width: 300px;
+	margin-bottom: 40px;
 }
 
 #footerline {
@@ -323,11 +312,12 @@ html {
 }
 
 a {
-	color: #000;
+	color: #FFF;
 	letter-spacing: 2px;
 	text-transform: uppercase;
 	text-decoration: none;
 	z-index: 50000;
+	font-weight: 900;
 }
 
 a:hover {
@@ -402,12 +392,16 @@ a:hover {
 	text-align:center;
 }
 
-.content-title {
+.section-title {
 	position: absolute;
 	left: 0px;
-	margin-left: 30%;
+	margin-left: 32%;
 	z-index: 1000;
-	background-color: black;
+	color: #b39465;
+	font-weight: 900;
+	font-size: 4.5vw;
+	font-family: "futura_ltbook";
+	text-align: left;
 }
 
 .section {
@@ -416,7 +410,7 @@ a:hover {
 }
 
 .img-offset {
-	padding-top: 120px;
+	padding-top: 100px;
 }
 
 .img-style {
@@ -432,7 +426,7 @@ a:hover {
 .dark {
 	padding-top:50px;
 	padding-bottom:50px;
-	background-color: #000;
+	background-color: #211f20;
 }
 
 .dark-text {
