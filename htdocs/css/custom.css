@@ -163,7 +163,7 @@ Header
 	height: auto;
 	width: 350px;
 	
-	position: fixed;
+	position: absolute;
 	margin: auto;	
 	top: 0;
 	left: 0;
@@ -319,7 +319,7 @@ INTER
 }
 
 #bmenu1,#bmenu2 {
-	position: fixed;
+	position: absolute;
 	color:#FFFFFF;
 	top: 20px;
 	z-index: 2001;
