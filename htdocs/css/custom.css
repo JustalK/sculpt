@@ -51,6 +51,11 @@ FONT
 
 }
 
+
+/* ===============================================================================================================================>
+ALL
+==================================================================================================================================> */
+
 img {
     /*height: auto !important;
     width: 100% !important*/
@@ -68,38 +73,48 @@ html {
 	/*font-family: fontsculpt;*/
 }
 
-.imgContainer {	
-	height: 100%;
-	width:100%;
+a {
+	color: #FFF;
+	letter-spacing: 2px;
+	text-transform: uppercase;
+	text-decoration: none;
+	z-index: 50000;
+	font-weight: 900;
 }
 
-.tbl { 
+a:hover {
+	color: #888a85;
+}
+
+/* ===============================================================================================================================>
+BORDER
+==================================================================================================================================> */
+
+.tborder-section {
+	position: absolute;
+	
+	background-size: 100% auto;
 	min-width: 1440px;
 	width: 100%;
 	height: 200px;
-	right: 0;
-	position: absolute;
-	background-image: url("./../img/brush_top_section_white_1440.png");
-	background-size: 100% auto;
 }
 
-.tbr { 
+.tbl { 
+	background-image: url("./../img/brush_top_section_white_1440.png");
+	
+	right: 0;
 }
 
 .ttr { 
-	min-width: 1440px;
-	width: 100%;
-	height: 200px; 
+	background-image: url("./../img/brush_bottom_section_white_1440.png");
+	
 	bottom: 0;
 	left: 0;
-	position:absolute;
-	background-image: url("./../img/brush_bottom_section_white_1440.png");
-	background-size: 100% auto;
 }
 
-.ttl { 
-
-}
+/* ===============================================================================================================================>
+Bandeau
+==================================================================================================================================> */
 
 #title {
 	position:fixed;
@@ -223,9 +238,8 @@ NORMAL Content
 }
 
 /* ===============================================================================================================================>
-NORMAL Content
+SPECIAL Content
 ==================================================================================================================================> */
-
 
 .section-title-dark {
 	
@@ -250,6 +264,18 @@ NORMAL Content
 	color: black;
 }
 
+.dark-text {
+	color: #000;
+}
+
+.white-text {
+	color: #FFF;
+}
+
+.nameJewel {
+	color: #000;
+}
+
 /* ===============================================================================================================================>
 INTER
 ==================================================================================================================================> */
@@ -258,15 +284,6 @@ INTER
 	margin-top: 80px;
 	margin-bottom: 50px;
 }
-
-
-
-
-
-
-
-
-
 
 .logo-sclpt-menu {
 	position: absolute;
@@ -277,6 +294,10 @@ INTER
 	margin-bottom: 40px;
 }
 
+/* ===============================================================================================================================>
+Footer
+==================================================================================================================================> */
+
 #footerline {
 	position:absolute;
 	bottom:0;
@@ -286,6 +307,10 @@ INTER
 	font-weight: bold;
 	font-size: 1vw;
 }
+
+/* ===============================================================================================================================>
+BACKGROUND
+==================================================================================================================================> */
 
 .cut {
 	position: fixed;
@@ -317,6 +342,10 @@ INTER
 	background-size: cover; /* version standardisée */
 	height: 100%;
 }
+
+/* ===============================================================================================================================>
+MENU
+==================================================================================================================================> */
 
 #bmenu1,#bmenu2 {
 	position: absolute;
@@ -432,19 +461,6 @@ INTER
 	margin-top:10px;
 }
 
-a {
-	color: #FFF;
-	letter-spacing: 2px;
-	text-transform: uppercase;
-	text-decoration: none;
-	z-index: 50000;
-	font-weight: 900;
-}
-
-a:hover {
-	color: #888a85;
-}
-
 .noselect {
   -webkit-touch-callout: none; /* iOS Safari */
   -webkit-user-select: none;   /* Chrome/Safari/Opera */
@@ -515,16 +531,4 @@ a:hover {
 
 .img-style {
 	margin-bottom: 20px;
-}
-
-.dark-text {
-	color: #000;
-}
-
-.white-text {
-	color: #FFF;
-}
-
-.nameJewel {
-	color: #000;
 }

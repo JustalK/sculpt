@@ -215,23 +215,13 @@ $( document ).ready(function() {
 		
 		//Angle
 		$(".tbl").css("border-left",$(window).width()+"px solid transparent");
-		$(".tbr").css("border-right",$(window).width()+"px solid transparent");
 		$(".ttr").css("border-right",$(window).width()+"px solid transparent");
-		$(".ttl").css("border-left",$(window).width()+"px solid transparent");
 		
 		$(".tbl").each(function() {
 			$(this).css("top",-200+"px");
 		});
-
-		$(".tbr").each(function() {
-			$(this).css("top",-200+"px");
-		});		
 		
 		$(".ttr").each(function(index) {
-			$(this).css("top",$(".cache:eq("+index+")").height()+"px");
-		});
-		
-		$(".ttl").each(function(index) {
 			$(this).css("top",$(".cache:eq("+index+")").height()+"px");
 		});
 		
